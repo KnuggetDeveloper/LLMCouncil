@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Available LLM models catalog
+model AvailableModel {
+  id            String   @id @default(cuid()) // e.g., "openai/gpt-4o"
+  name          String // e.g., "GPT-4o"
+  description   String? // e.g., "GPT-4o is OpenAI's flagship model..."
+  contextLength Int?     @map("context_length")
+  pricing       Json? // { prompt: string, completion: string, image?: string, request?: string }
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("available_models")
+}
+
+// Users table for Firebase authentication
+model User {
+  id        String    @id // Firebase UID
+  email     String
+  name      String?
+  photoURL  String?   @map("photo_url")
+  createdAt DateTime  @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  projects  Project[]
+
+  @@map("users")
+}
+
+// Projects table
+model Project {
+  id            String         @id @default(cuid())
+  userId        String         @map("user_id")
+  name          String
+  createdAt     DateTime       @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectMemory ProjectMemory?
+  threads       Thread[]
+  messages      Message[]
+
+  @@map("projects")
+}
+
+// Project memory for context preservation
+model ProjectMemory {
+  id            String   @id @default(cuid())
+  projectId     String   @unique @map("project_id")
+  summary       String   @default("")
+  facts         Json     @default("[]") // string[]
+  decisions     Json     @default("[]") // { decision: string, reasoning: string, date: string }[]
+  openQuestions Json     @default("[]") @map("open_questions") // string[]
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_memory")
+}
+
+// Threads (conversations) within a project
+model Thread {
+  id        String    @id @default(cuid())
+  projectId String    @map("project_id")
+  title     String
+  mode      String    @default("multiask") // "multiask" or "critique"
+  createdAt DateTime  @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  messages  Message[]
+
+  @@map("threads")
+}
+
+// Messages within threads
+model Message {
+  id         String   @id @default(cuid())
+  threadId   String   @map("thread_id")
+  projectId  String   @map("project_id")
+  role       String // "user", "assistant", "system", "verdict", "critique", "review"
+  content    String
+  modelUsed  String?  @map("model_used")
+  turnNumber Int      @default(1) @map("turn_number") // Groups messages by conversation turn
+  metadata   Json? // Record<string, unknown>
+  createdAt  DateTime @map("created_at")
+  thread     Thread   @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
