@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyIdToken } from "@/lib/firebase-admin";
 import { prisma } from "@/lib/prisma";
+import { SIGNUP_GRANT_MICRO } from "@/lib/credits";
 
 // POST /api/auth/sync - Sync Firebase user to our database
 export async function POST(request: NextRequest) {
@@ -36,6 +37,17 @@ export async function POST(request: NextRequest) {
         photoURL: firebaseUser.picture || null,
         createdAt: now,
         updatedAt: now,
+      },
+    });
+
+    // Create wallet if it doesn't exist (grant signup credits)
+    await prisma.userWallet.upsert({
+      where: { userId: firebaseUser.uid },
+      update: {}, // No-op if wallet exists
+      create: {
+        userId: firebaseUser.uid,
+        balanceMicrocredits: SIGNUP_GRANT_MICRO,
+        subscriptionStatus: "free",
       },
     });
 

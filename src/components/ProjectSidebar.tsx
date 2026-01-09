@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useProject } from "@/context/ProjectContext";
 import { useModels } from "@/context/ModelsContext";
 import { useAuth } from "@/context/AuthContext";
+import CreditsDisplay from "@/components/CreditsDisplay";
 
 interface ProjectSidebarProps {
   onNewThread: (mode: "multiask" | "critique") => void;
@@ -59,7 +60,7 @@ export default function ProjectSidebar({ onNewThread }: ProjectSidebarProps) {
     <div className="w-72 bg-gray-950 border-r border-gray-800 flex flex-col h-full">
       {/* User Header */}
       <div className="p-4 border-b border-gray-800 bg-gray-900/50">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             {user?.photoURL ? (
               <img
@@ -69,7 +70,7 @@ export default function ProjectSidebar({ onNewThread }: ProjectSidebarProps) {
                 referrerPolicy="no-referrer"
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-linear-to-b from-blue-500 to-purple-600 flex items-center justify-center">
                 <span className="text-white text-sm font-medium">
                   {user?.name?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase() || "?"}
                 </span>
@@ -88,6 +89,11 @@ export default function ProjectSidebar({ onNewThread }: ProjectSidebarProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>
           </button>
+        </div>
+        
+        {/* Credits Display */}
+        <div className="mt-3">
+          <CreditsDisplay />
         </div>
       </div>
 
@@ -152,7 +158,7 @@ export default function ProjectSidebar({ onNewThread }: ProjectSidebarProps) {
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                   </svg>
                   <span className="truncate text-sm">{project.name}</span>

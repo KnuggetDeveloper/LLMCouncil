@@ -25,13 +25,14 @@ model AvailableModel {
 
 // Users table for Firebase authentication
 model User {
-  id        String    @id // Firebase UID
+  id        String      @id // Firebase UID
   email     String
   name      String?
-  photoURL  String?   @map("photo_url")
-  createdAt DateTime  @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
+  photoURL  String?     @map("photo_url")
+  createdAt DateTime    @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
   projects  Project[]
+  wallet    UserWallet?
 
   @@map("users")
 }
@@ -94,4 +95,59 @@ model Message {
   project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   @@map("messages")
+}
+
+// User wallet for credits management
+model UserWallet {
+  userId                    String                @id @map("user_id")
+  balanceMicrocredits       BigInt                @default(1500000000) @map("balance_microcredits")
+  subscriptionStatus        String                @default("free") @map("subscription_status")
+  currentPeriodEnd          DateTime?             @map("current_period_end") @db.Timestamptz
+  capMicrocredits           BigInt                @default(40000000000) @map("cap_microcredits")
+  createdAt                 DateTime              @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt                 DateTime              @updatedAt @map("updated_at") @db.Timestamptz
+  user                      User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriptionPayments      SubscriptionPayment[]
+  creditUsage               CreditUsage[]
+
+  @@index([subscriptionStatus])
+  @@map("user_wallet")
+}
+
+// Subscription payments ledger (money-in)
+model SubscriptionPayment {
+  id                        String     @id @default(cuid())
+  userId                    String     @map("user_id")
+  paymentProvider           String     @map("payment_provider")
+  paymentProviderId         String     @unique @map("payment_provider_id")
+  amountPaidCents           Int        @map("amount_paid_cents")
+  currency                  String     @default("USD")
+  grantMicrocredits         BigInt     @map("grant_microcredits")
+  balanceBeforeMicrocredits BigInt     @map("balance_before_microcredits")
+  balanceAfterMicrocredits  BigInt     @map("balance_after_microcredits")
+  createdAt                 DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  wallet                    UserWallet @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("subscription_payments")
+}
+
+// Credit usage ledger (money-out)
+model CreditUsage {
+  id                        String     @id @default(cuid())
+  userId                    String     @map("user_id")
+  requestId                 String     @unique @map("request_id")
+  openrouterGenerationId    String?    @map("openrouter_generation_id")
+  modelUsed                 String?    @map("model_used")
+  activityType              String     @map("activity_type")
+  costMicrousd              BigInt     @map("cost_microusd")
+  debitMicrocredits         BigInt     @map("debit_microcredits")
+  tokenUsage                Json?      @map("token_usage")
+  balanceBeforeMicrocredits BigInt     @map("balance_before_microcredits")
+  balanceAfterMicrocredits  BigInt     @map("balance_after_microcredits")
+  createdAt                 DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  wallet                    UserWallet @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("credit_usage")
 }

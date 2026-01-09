@@ -43,6 +43,21 @@ export type Thread = $Result.DefaultSelection<Prisma.$ThreadPayload>
  * 
  */
 export type Message = $Result.DefaultSelection<Prisma.$MessagePayload>
+/**
+ * Model UserWallet
+ * 
+ */
+export type UserWallet = $Result.DefaultSelection<Prisma.$UserWalletPayload>
+/**
+ * Model SubscriptionPayment
+ * 
+ */
+export type SubscriptionPayment = $Result.DefaultSelection<Prisma.$SubscriptionPaymentPayload>
+/**
+ * Model CreditUsage
+ * 
+ */
+export type CreditUsage = $Result.DefaultSelection<Prisma.$CreditUsagePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -220,6 +235,36 @@ export class PrismaClient<
     * ```
     */
   get message(): Prisma.MessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userWallet`: Exposes CRUD operations for the **UserWallet** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserWallets
+    * const userWallets = await prisma.userWallet.findMany()
+    * ```
+    */
+  get userWallet(): Prisma.UserWalletDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.subscriptionPayment`: Exposes CRUD operations for the **SubscriptionPayment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SubscriptionPayments
+    * const subscriptionPayments = await prisma.subscriptionPayment.findMany()
+    * ```
+    */
+  get subscriptionPayment(): Prisma.SubscriptionPaymentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.creditUsage`: Exposes CRUD operations for the **CreditUsage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CreditUsages
+    * const creditUsages = await prisma.creditUsage.findMany()
+    * ```
+    */
+  get creditUsage(): Prisma.CreditUsageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -659,7 +704,10 @@ export namespace Prisma {
     Project: 'Project',
     ProjectMemory: 'ProjectMemory',
     Thread: 'Thread',
-    Message: 'Message'
+    Message: 'Message',
+    UserWallet: 'UserWallet',
+    SubscriptionPayment: 'SubscriptionPayment',
+    CreditUsage: 'CreditUsage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -675,7 +723,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "availableModel" | "user" | "project" | "projectMemory" | "thread" | "message"
+      modelProps: "availableModel" | "user" | "project" | "projectMemory" | "thread" | "message" | "userWallet" | "subscriptionPayment" | "creditUsage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1123,6 +1171,228 @@ export namespace Prisma {
           }
         }
       }
+      UserWallet: {
+        payload: Prisma.$UserWalletPayload<ExtArgs>
+        fields: Prisma.UserWalletFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserWalletFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserWalletFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>
+          }
+          findFirst: {
+            args: Prisma.UserWalletFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserWalletFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>
+          }
+          findMany: {
+            args: Prisma.UserWalletFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>[]
+          }
+          create: {
+            args: Prisma.UserWalletCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>
+          }
+          createMany: {
+            args: Prisma.UserWalletCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserWalletCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>[]
+          }
+          delete: {
+            args: Prisma.UserWalletDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>
+          }
+          update: {
+            args: Prisma.UserWalletUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserWalletDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserWalletUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserWalletUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserWalletUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserWalletPayload>
+          }
+          aggregate: {
+            args: Prisma.UserWalletAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserWallet>
+          }
+          groupBy: {
+            args: Prisma.UserWalletGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserWalletGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserWalletCountArgs<ExtArgs>
+            result: $Utils.Optional<UserWalletCountAggregateOutputType> | number
+          }
+        }
+      }
+      SubscriptionPayment: {
+        payload: Prisma.$SubscriptionPaymentPayload<ExtArgs>
+        fields: Prisma.SubscriptionPaymentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SubscriptionPaymentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubscriptionPaymentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>
+          }
+          findFirst: {
+            args: Prisma.SubscriptionPaymentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubscriptionPaymentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>
+          }
+          findMany: {
+            args: Prisma.SubscriptionPaymentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>[]
+          }
+          create: {
+            args: Prisma.SubscriptionPaymentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>
+          }
+          createMany: {
+            args: Prisma.SubscriptionPaymentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SubscriptionPaymentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>[]
+          }
+          delete: {
+            args: Prisma.SubscriptionPaymentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>
+          }
+          update: {
+            args: Prisma.SubscriptionPaymentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>
+          }
+          deleteMany: {
+            args: Prisma.SubscriptionPaymentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubscriptionPaymentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SubscriptionPaymentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>[]
+          }
+          upsert: {
+            args: Prisma.SubscriptionPaymentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPaymentPayload>
+          }
+          aggregate: {
+            args: Prisma.SubscriptionPaymentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubscriptionPayment>
+          }
+          groupBy: {
+            args: Prisma.SubscriptionPaymentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionPaymentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SubscriptionPaymentCountArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionPaymentCountAggregateOutputType> | number
+          }
+        }
+      }
+      CreditUsage: {
+        payload: Prisma.$CreditUsagePayload<ExtArgs>
+        fields: Prisma.CreditUsageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CreditUsageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CreditUsageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>
+          }
+          findFirst: {
+            args: Prisma.CreditUsageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CreditUsageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>
+          }
+          findMany: {
+            args: Prisma.CreditUsageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>[]
+          }
+          create: {
+            args: Prisma.CreditUsageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>
+          }
+          createMany: {
+            args: Prisma.CreditUsageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CreditUsageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>[]
+          }
+          delete: {
+            args: Prisma.CreditUsageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>
+          }
+          update: {
+            args: Prisma.CreditUsageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>
+          }
+          deleteMany: {
+            args: Prisma.CreditUsageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CreditUsageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CreditUsageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>[]
+          }
+          upsert: {
+            args: Prisma.CreditUsageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CreditUsagePayload>
+          }
+          aggregate: {
+            args: Prisma.CreditUsageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCreditUsage>
+          }
+          groupBy: {
+            args: Prisma.CreditUsageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CreditUsageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CreditUsageCountArgs<ExtArgs>
+            result: $Utils.Optional<CreditUsageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1237,6 +1507,9 @@ export namespace Prisma {
     projectMemory?: ProjectMemoryOmit
     thread?: ThreadOmit
     message?: MessageOmit
+    userWallet?: UserWalletOmit
+    subscriptionPayment?: SubscriptionPaymentOmit
+    creditUsage?: CreditUsageOmit
   }
 
   /* Types for Logging */
@@ -1411,6 +1684,46 @@ export namespace Prisma {
    */
   export type ThreadCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MessageWhereInput
+  }
+
+
+  /**
+   * Count Type UserWalletCountOutputType
+   */
+
+  export type UserWalletCountOutputType = {
+    subscriptionPayments: number
+    creditUsage: number
+  }
+
+  export type UserWalletCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subscriptionPayments?: boolean | UserWalletCountOutputTypeCountSubscriptionPaymentsArgs
+    creditUsage?: boolean | UserWalletCountOutputTypeCountCreditUsageArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserWalletCountOutputType without action
+   */
+  export type UserWalletCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWalletCountOutputType
+     */
+    select?: UserWalletCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserWalletCountOutputType without action
+   */
+  export type UserWalletCountOutputTypeCountSubscriptionPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscriptionPaymentWhereInput
+  }
+
+  /**
+   * UserWalletCountOutputType without action
+   */
+  export type UserWalletCountOutputTypeCountCreditUsageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CreditUsageWhereInput
   }
 
 
@@ -2642,6 +2955,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     projects?: boolean | User$projectsArgs<ExtArgs>
+    wallet?: boolean | User$walletArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2675,6 +2989,7 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "photoURL" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     projects?: boolean | User$projectsArgs<ExtArgs>
+    wallet?: boolean | User$walletArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2684,6 +2999,7 @@ export namespace Prisma {
     name: "User"
     objects: {
       projects: Prisma.$ProjectPayload<ExtArgs>[]
+      wallet: Prisma.$UserWalletPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3087,6 +3403,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     projects<T extends User$projectsArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    wallet<T extends User$walletArgs<ExtArgs> = {}>(args?: Subset<T, User$walletArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3531,6 +3848,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * User.wallet
+   */
+  export type User$walletArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    where?: UserWalletWhereInput
   }
 
   /**
@@ -8013,6 +8349,3546 @@ export namespace Prisma {
 
 
   /**
+   * Model UserWallet
+   */
+
+  export type AggregateUserWallet = {
+    _count: UserWalletCountAggregateOutputType | null
+    _avg: UserWalletAvgAggregateOutputType | null
+    _sum: UserWalletSumAggregateOutputType | null
+    _min: UserWalletMinAggregateOutputType | null
+    _max: UserWalletMaxAggregateOutputType | null
+  }
+
+  export type UserWalletAvgAggregateOutputType = {
+    balanceMicrocredits: number | null
+    capMicrocredits: number | null
+  }
+
+  export type UserWalletSumAggregateOutputType = {
+    balanceMicrocredits: bigint | null
+    capMicrocredits: bigint | null
+  }
+
+  export type UserWalletMinAggregateOutputType = {
+    userId: string | null
+    balanceMicrocredits: bigint | null
+    subscriptionStatus: string | null
+    currentPeriodEnd: Date | null
+    capMicrocredits: bigint | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserWalletMaxAggregateOutputType = {
+    userId: string | null
+    balanceMicrocredits: bigint | null
+    subscriptionStatus: string | null
+    currentPeriodEnd: Date | null
+    capMicrocredits: bigint | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserWalletCountAggregateOutputType = {
+    userId: number
+    balanceMicrocredits: number
+    subscriptionStatus: number
+    currentPeriodEnd: number
+    capMicrocredits: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserWalletAvgAggregateInputType = {
+    balanceMicrocredits?: true
+    capMicrocredits?: true
+  }
+
+  export type UserWalletSumAggregateInputType = {
+    balanceMicrocredits?: true
+    capMicrocredits?: true
+  }
+
+  export type UserWalletMinAggregateInputType = {
+    userId?: true
+    balanceMicrocredits?: true
+    subscriptionStatus?: true
+    currentPeriodEnd?: true
+    capMicrocredits?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserWalletMaxAggregateInputType = {
+    userId?: true
+    balanceMicrocredits?: true
+    subscriptionStatus?: true
+    currentPeriodEnd?: true
+    capMicrocredits?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserWalletCountAggregateInputType = {
+    userId?: true
+    balanceMicrocredits?: true
+    subscriptionStatus?: true
+    currentPeriodEnd?: true
+    capMicrocredits?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserWalletAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserWallet to aggregate.
+     */
+    where?: UserWalletWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserWallets to fetch.
+     */
+    orderBy?: UserWalletOrderByWithRelationInput | UserWalletOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWalletWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserWallets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserWallets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserWallets
+    **/
+    _count?: true | UserWalletCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserWalletAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserWalletSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserWalletMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserWalletMaxAggregateInputType
+  }
+
+  export type GetUserWalletAggregateType<T extends UserWalletAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserWallet]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserWallet[P]>
+      : GetScalarType<T[P], AggregateUserWallet[P]>
+  }
+
+
+
+
+  export type UserWalletGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWalletWhereInput
+    orderBy?: UserWalletOrderByWithAggregationInput | UserWalletOrderByWithAggregationInput[]
+    by: UserWalletScalarFieldEnum[] | UserWalletScalarFieldEnum
+    having?: UserWalletScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserWalletCountAggregateInputType | true
+    _avg?: UserWalletAvgAggregateInputType
+    _sum?: UserWalletSumAggregateInputType
+    _min?: UserWalletMinAggregateInputType
+    _max?: UserWalletMaxAggregateInputType
+  }
+
+  export type UserWalletGroupByOutputType = {
+    userId: string
+    balanceMicrocredits: bigint
+    subscriptionStatus: string
+    currentPeriodEnd: Date | null
+    capMicrocredits: bigint
+    createdAt: Date
+    updatedAt: Date
+    _count: UserWalletCountAggregateOutputType | null
+    _avg: UserWalletAvgAggregateOutputType | null
+    _sum: UserWalletSumAggregateOutputType | null
+    _min: UserWalletMinAggregateOutputType | null
+    _max: UserWalletMaxAggregateOutputType | null
+  }
+
+  type GetUserWalletGroupByPayload<T extends UserWalletGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserWalletGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserWalletGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserWalletGroupByOutputType[P]>
+            : GetScalarType<T[P], UserWalletGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserWalletSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    balanceMicrocredits?: boolean
+    subscriptionStatus?: boolean
+    currentPeriodEnd?: boolean
+    capMicrocredits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    subscriptionPayments?: boolean | UserWallet$subscriptionPaymentsArgs<ExtArgs>
+    creditUsage?: boolean | UserWallet$creditUsageArgs<ExtArgs>
+    _count?: boolean | UserWalletCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userWallet"]>
+
+  export type UserWalletSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    balanceMicrocredits?: boolean
+    subscriptionStatus?: boolean
+    currentPeriodEnd?: boolean
+    capMicrocredits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userWallet"]>
+
+  export type UserWalletSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    balanceMicrocredits?: boolean
+    subscriptionStatus?: boolean
+    currentPeriodEnd?: boolean
+    capMicrocredits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userWallet"]>
+
+  export type UserWalletSelectScalar = {
+    userId?: boolean
+    balanceMicrocredits?: boolean
+    subscriptionStatus?: boolean
+    currentPeriodEnd?: boolean
+    capMicrocredits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserWalletOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "balanceMicrocredits" | "subscriptionStatus" | "currentPeriodEnd" | "capMicrocredits" | "createdAt" | "updatedAt", ExtArgs["result"]["userWallet"]>
+  export type UserWalletInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    subscriptionPayments?: boolean | UserWallet$subscriptionPaymentsArgs<ExtArgs>
+    creditUsage?: boolean | UserWallet$creditUsageArgs<ExtArgs>
+    _count?: boolean | UserWalletCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserWalletIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserWalletIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserWalletPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserWallet"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      subscriptionPayments: Prisma.$SubscriptionPaymentPayload<ExtArgs>[]
+      creditUsage: Prisma.$CreditUsagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      userId: string
+      balanceMicrocredits: bigint
+      subscriptionStatus: string
+      currentPeriodEnd: Date | null
+      capMicrocredits: bigint
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userWallet"]>
+    composites: {}
+  }
+
+  type UserWalletGetPayload<S extends boolean | null | undefined | UserWalletDefaultArgs> = $Result.GetResult<Prisma.$UserWalletPayload, S>
+
+  type UserWalletCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserWalletFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserWalletCountAggregateInputType | true
+    }
+
+  export interface UserWalletDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserWallet'], meta: { name: 'UserWallet' } }
+    /**
+     * Find zero or one UserWallet that matches the filter.
+     * @param {UserWalletFindUniqueArgs} args - Arguments to find a UserWallet
+     * @example
+     * // Get one UserWallet
+     * const userWallet = await prisma.userWallet.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserWalletFindUniqueArgs>(args: SelectSubset<T, UserWalletFindUniqueArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserWallet that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserWalletFindUniqueOrThrowArgs} args - Arguments to find a UserWallet
+     * @example
+     * // Get one UserWallet
+     * const userWallet = await prisma.userWallet.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserWalletFindUniqueOrThrowArgs>(args: SelectSubset<T, UserWalletFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserWallet that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserWalletFindFirstArgs} args - Arguments to find a UserWallet
+     * @example
+     * // Get one UserWallet
+     * const userWallet = await prisma.userWallet.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserWalletFindFirstArgs>(args?: SelectSubset<T, UserWalletFindFirstArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserWallet that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserWalletFindFirstOrThrowArgs} args - Arguments to find a UserWallet
+     * @example
+     * // Get one UserWallet
+     * const userWallet = await prisma.userWallet.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserWalletFindFirstOrThrowArgs>(args?: SelectSubset<T, UserWalletFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserWallets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserWalletFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserWallets
+     * const userWallets = await prisma.userWallet.findMany()
+     * 
+     * // Get first 10 UserWallets
+     * const userWallets = await prisma.userWallet.findMany({ take: 10 })
+     * 
+     * // Only select the `userId`
+     * const userWalletWithUserIdOnly = await prisma.userWallet.findMany({ select: { userId: true } })
+     * 
+     */
+    findMany<T extends UserWalletFindManyArgs>(args?: SelectSubset<T, UserWalletFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserWallet.
+     * @param {UserWalletCreateArgs} args - Arguments to create a UserWallet.
+     * @example
+     * // Create one UserWallet
+     * const UserWallet = await prisma.userWallet.create({
+     *   data: {
+     *     // ... data to create a UserWallet
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserWalletCreateArgs>(args: SelectSubset<T, UserWalletCreateArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserWallets.
+     * @param {UserWalletCreateManyArgs} args - Arguments to create many UserWallets.
+     * @example
+     * // Create many UserWallets
+     * const userWallet = await prisma.userWallet.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserWalletCreateManyArgs>(args?: SelectSubset<T, UserWalletCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserWallets and returns the data saved in the database.
+     * @param {UserWalletCreateManyAndReturnArgs} args - Arguments to create many UserWallets.
+     * @example
+     * // Create many UserWallets
+     * const userWallet = await prisma.userWallet.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserWallets and only return the `userId`
+     * const userWalletWithUserIdOnly = await prisma.userWallet.createManyAndReturn({
+     *   select: { userId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserWalletCreateManyAndReturnArgs>(args?: SelectSubset<T, UserWalletCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserWallet.
+     * @param {UserWalletDeleteArgs} args - Arguments to delete one UserWallet.
+     * @example
+     * // Delete one UserWallet
+     * const UserWallet = await prisma.userWallet.delete({
+     *   where: {
+     *     // ... filter to delete one UserWallet
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserWalletDeleteArgs>(args: SelectSubset<T, UserWalletDeleteArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserWallet.
+     * @param {UserWalletUpdateArgs} args - Arguments to update one UserWallet.
+     * @example
+     * // Update one UserWallet
+     * const userWallet = await prisma.userWallet.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserWalletUpdateArgs>(args: SelectSubset<T, UserWalletUpdateArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserWallets.
+     * @param {UserWalletDeleteManyArgs} args - Arguments to filter UserWallets to delete.
+     * @example
+     * // Delete a few UserWallets
+     * const { count } = await prisma.userWallet.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserWalletDeleteManyArgs>(args?: SelectSubset<T, UserWalletDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserWallets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserWalletUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserWallets
+     * const userWallet = await prisma.userWallet.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserWalletUpdateManyArgs>(args: SelectSubset<T, UserWalletUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserWallets and returns the data updated in the database.
+     * @param {UserWalletUpdateManyAndReturnArgs} args - Arguments to update many UserWallets.
+     * @example
+     * // Update many UserWallets
+     * const userWallet = await prisma.userWallet.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserWallets and only return the `userId`
+     * const userWalletWithUserIdOnly = await prisma.userWallet.updateManyAndReturn({
+     *   select: { userId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserWalletUpdateManyAndReturnArgs>(args: SelectSubset<T, UserWalletUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserWallet.
+     * @param {UserWalletUpsertArgs} args - Arguments to update or create a UserWallet.
+     * @example
+     * // Update or create a UserWallet
+     * const userWallet = await prisma.userWallet.upsert({
+     *   create: {
+     *     // ... data to create a UserWallet
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserWallet we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserWalletUpsertArgs>(args: SelectSubset<T, UserWalletUpsertArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserWallets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserWalletCountArgs} args - Arguments to filter UserWallets to count.
+     * @example
+     * // Count the number of UserWallets
+     * const count = await prisma.userWallet.count({
+     *   where: {
+     *     // ... the filter for the UserWallets we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserWalletCountArgs>(
+      args?: Subset<T, UserWalletCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserWalletCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserWallet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserWalletAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserWalletAggregateArgs>(args: Subset<T, UserWalletAggregateArgs>): Prisma.PrismaPromise<GetUserWalletAggregateType<T>>
+
+    /**
+     * Group by UserWallet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserWalletGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserWalletGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserWalletGroupByArgs['orderBy'] }
+        : { orderBy?: UserWalletGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserWalletGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserWalletGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserWallet model
+   */
+  readonly fields: UserWalletFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserWallet.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserWalletClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    subscriptionPayments<T extends UserWallet$subscriptionPaymentsArgs<ExtArgs> = {}>(args?: Subset<T, UserWallet$subscriptionPaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    creditUsage<T extends UserWallet$creditUsageArgs<ExtArgs> = {}>(args?: Subset<T, UserWallet$creditUsageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserWallet model
+   */
+  interface UserWalletFieldRefs {
+    readonly userId: FieldRef<"UserWallet", 'String'>
+    readonly balanceMicrocredits: FieldRef<"UserWallet", 'BigInt'>
+    readonly subscriptionStatus: FieldRef<"UserWallet", 'String'>
+    readonly currentPeriodEnd: FieldRef<"UserWallet", 'DateTime'>
+    readonly capMicrocredits: FieldRef<"UserWallet", 'BigInt'>
+    readonly createdAt: FieldRef<"UserWallet", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserWallet", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserWallet findUnique
+   */
+  export type UserWalletFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * Filter, which UserWallet to fetch.
+     */
+    where: UserWalletWhereUniqueInput
+  }
+
+  /**
+   * UserWallet findUniqueOrThrow
+   */
+  export type UserWalletFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * Filter, which UserWallet to fetch.
+     */
+    where: UserWalletWhereUniqueInput
+  }
+
+  /**
+   * UserWallet findFirst
+   */
+  export type UserWalletFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * Filter, which UserWallet to fetch.
+     */
+    where?: UserWalletWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserWallets to fetch.
+     */
+    orderBy?: UserWalletOrderByWithRelationInput | UserWalletOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserWallets.
+     */
+    cursor?: UserWalletWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserWallets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserWallets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserWallets.
+     */
+    distinct?: UserWalletScalarFieldEnum | UserWalletScalarFieldEnum[]
+  }
+
+  /**
+   * UserWallet findFirstOrThrow
+   */
+  export type UserWalletFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * Filter, which UserWallet to fetch.
+     */
+    where?: UserWalletWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserWallets to fetch.
+     */
+    orderBy?: UserWalletOrderByWithRelationInput | UserWalletOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserWallets.
+     */
+    cursor?: UserWalletWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserWallets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserWallets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserWallets.
+     */
+    distinct?: UserWalletScalarFieldEnum | UserWalletScalarFieldEnum[]
+  }
+
+  /**
+   * UserWallet findMany
+   */
+  export type UserWalletFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * Filter, which UserWallets to fetch.
+     */
+    where?: UserWalletWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserWallets to fetch.
+     */
+    orderBy?: UserWalletOrderByWithRelationInput | UserWalletOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserWallets.
+     */
+    cursor?: UserWalletWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserWallets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserWallets.
+     */
+    skip?: number
+    distinct?: UserWalletScalarFieldEnum | UserWalletScalarFieldEnum[]
+  }
+
+  /**
+   * UserWallet create
+   */
+  export type UserWalletCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserWallet.
+     */
+    data: XOR<UserWalletCreateInput, UserWalletUncheckedCreateInput>
+  }
+
+  /**
+   * UserWallet createMany
+   */
+  export type UserWalletCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserWallets.
+     */
+    data: UserWalletCreateManyInput | UserWalletCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserWallet createManyAndReturn
+   */
+  export type UserWalletCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserWallets.
+     */
+    data: UserWalletCreateManyInput | UserWalletCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserWallet update
+   */
+  export type UserWalletUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserWallet.
+     */
+    data: XOR<UserWalletUpdateInput, UserWalletUncheckedUpdateInput>
+    /**
+     * Choose, which UserWallet to update.
+     */
+    where: UserWalletWhereUniqueInput
+  }
+
+  /**
+   * UserWallet updateMany
+   */
+  export type UserWalletUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserWallets.
+     */
+    data: XOR<UserWalletUpdateManyMutationInput, UserWalletUncheckedUpdateManyInput>
+    /**
+     * Filter which UserWallets to update
+     */
+    where?: UserWalletWhereInput
+    /**
+     * Limit how many UserWallets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserWallet updateManyAndReturn
+   */
+  export type UserWalletUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * The data used to update UserWallets.
+     */
+    data: XOR<UserWalletUpdateManyMutationInput, UserWalletUncheckedUpdateManyInput>
+    /**
+     * Filter which UserWallets to update
+     */
+    where?: UserWalletWhereInput
+    /**
+     * Limit how many UserWallets to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserWallet upsert
+   */
+  export type UserWalletUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserWallet to update in case it exists.
+     */
+    where: UserWalletWhereUniqueInput
+    /**
+     * In case the UserWallet found by the `where` argument doesn't exist, create a new UserWallet with this data.
+     */
+    create: XOR<UserWalletCreateInput, UserWalletUncheckedCreateInput>
+    /**
+     * In case the UserWallet was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserWalletUpdateInput, UserWalletUncheckedUpdateInput>
+  }
+
+  /**
+   * UserWallet delete
+   */
+  export type UserWalletDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+    /**
+     * Filter which UserWallet to delete.
+     */
+    where: UserWalletWhereUniqueInput
+  }
+
+  /**
+   * UserWallet deleteMany
+   */
+  export type UserWalletDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserWallets to delete
+     */
+    where?: UserWalletWhereInput
+    /**
+     * Limit how many UserWallets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserWallet.subscriptionPayments
+   */
+  export type UserWallet$subscriptionPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    where?: SubscriptionPaymentWhereInput
+    orderBy?: SubscriptionPaymentOrderByWithRelationInput | SubscriptionPaymentOrderByWithRelationInput[]
+    cursor?: SubscriptionPaymentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SubscriptionPaymentScalarFieldEnum | SubscriptionPaymentScalarFieldEnum[]
+  }
+
+  /**
+   * UserWallet.creditUsage
+   */
+  export type UserWallet$creditUsageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    where?: CreditUsageWhereInput
+    orderBy?: CreditUsageOrderByWithRelationInput | CreditUsageOrderByWithRelationInput[]
+    cursor?: CreditUsageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CreditUsageScalarFieldEnum | CreditUsageScalarFieldEnum[]
+  }
+
+  /**
+   * UserWallet without action
+   */
+  export type UserWalletDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWallet
+     */
+    select?: UserWalletSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserWallet
+     */
+    omit?: UserWalletOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserWalletInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SubscriptionPayment
+   */
+
+  export type AggregateSubscriptionPayment = {
+    _count: SubscriptionPaymentCountAggregateOutputType | null
+    _avg: SubscriptionPaymentAvgAggregateOutputType | null
+    _sum: SubscriptionPaymentSumAggregateOutputType | null
+    _min: SubscriptionPaymentMinAggregateOutputType | null
+    _max: SubscriptionPaymentMaxAggregateOutputType | null
+  }
+
+  export type SubscriptionPaymentAvgAggregateOutputType = {
+    amountPaidCents: number | null
+    grantMicrocredits: number | null
+    balanceBeforeMicrocredits: number | null
+    balanceAfterMicrocredits: number | null
+  }
+
+  export type SubscriptionPaymentSumAggregateOutputType = {
+    amountPaidCents: number | null
+    grantMicrocredits: bigint | null
+    balanceBeforeMicrocredits: bigint | null
+    balanceAfterMicrocredits: bigint | null
+  }
+
+  export type SubscriptionPaymentMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    paymentProvider: string | null
+    paymentProviderId: string | null
+    amountPaidCents: number | null
+    currency: string | null
+    grantMicrocredits: bigint | null
+    balanceBeforeMicrocredits: bigint | null
+    balanceAfterMicrocredits: bigint | null
+    createdAt: Date | null
+  }
+
+  export type SubscriptionPaymentMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    paymentProvider: string | null
+    paymentProviderId: string | null
+    amountPaidCents: number | null
+    currency: string | null
+    grantMicrocredits: bigint | null
+    balanceBeforeMicrocredits: bigint | null
+    balanceAfterMicrocredits: bigint | null
+    createdAt: Date | null
+  }
+
+  export type SubscriptionPaymentCountAggregateOutputType = {
+    id: number
+    userId: number
+    paymentProvider: number
+    paymentProviderId: number
+    amountPaidCents: number
+    currency: number
+    grantMicrocredits: number
+    balanceBeforeMicrocredits: number
+    balanceAfterMicrocredits: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SubscriptionPaymentAvgAggregateInputType = {
+    amountPaidCents?: true
+    grantMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+  }
+
+  export type SubscriptionPaymentSumAggregateInputType = {
+    amountPaidCents?: true
+    grantMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+  }
+
+  export type SubscriptionPaymentMinAggregateInputType = {
+    id?: true
+    userId?: true
+    paymentProvider?: true
+    paymentProviderId?: true
+    amountPaidCents?: true
+    currency?: true
+    grantMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+    createdAt?: true
+  }
+
+  export type SubscriptionPaymentMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    paymentProvider?: true
+    paymentProviderId?: true
+    amountPaidCents?: true
+    currency?: true
+    grantMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+    createdAt?: true
+  }
+
+  export type SubscriptionPaymentCountAggregateInputType = {
+    id?: true
+    userId?: true
+    paymentProvider?: true
+    paymentProviderId?: true
+    amountPaidCents?: true
+    currency?: true
+    grantMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SubscriptionPaymentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SubscriptionPayment to aggregate.
+     */
+    where?: SubscriptionPaymentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPayments to fetch.
+     */
+    orderBy?: SubscriptionPaymentOrderByWithRelationInput | SubscriptionPaymentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubscriptionPaymentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPayments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPayments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SubscriptionPayments
+    **/
+    _count?: true | SubscriptionPaymentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SubscriptionPaymentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SubscriptionPaymentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubscriptionPaymentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubscriptionPaymentMaxAggregateInputType
+  }
+
+  export type GetSubscriptionPaymentAggregateType<T extends SubscriptionPaymentAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubscriptionPayment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubscriptionPayment[P]>
+      : GetScalarType<T[P], AggregateSubscriptionPayment[P]>
+  }
+
+
+
+
+  export type SubscriptionPaymentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscriptionPaymentWhereInput
+    orderBy?: SubscriptionPaymentOrderByWithAggregationInput | SubscriptionPaymentOrderByWithAggregationInput[]
+    by: SubscriptionPaymentScalarFieldEnum[] | SubscriptionPaymentScalarFieldEnum
+    having?: SubscriptionPaymentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubscriptionPaymentCountAggregateInputType | true
+    _avg?: SubscriptionPaymentAvgAggregateInputType
+    _sum?: SubscriptionPaymentSumAggregateInputType
+    _min?: SubscriptionPaymentMinAggregateInputType
+    _max?: SubscriptionPaymentMaxAggregateInputType
+  }
+
+  export type SubscriptionPaymentGroupByOutputType = {
+    id: string
+    userId: string
+    paymentProvider: string
+    paymentProviderId: string
+    amountPaidCents: number
+    currency: string
+    grantMicrocredits: bigint
+    balanceBeforeMicrocredits: bigint
+    balanceAfterMicrocredits: bigint
+    createdAt: Date
+    _count: SubscriptionPaymentCountAggregateOutputType | null
+    _avg: SubscriptionPaymentAvgAggregateOutputType | null
+    _sum: SubscriptionPaymentSumAggregateOutputType | null
+    _min: SubscriptionPaymentMinAggregateOutputType | null
+    _max: SubscriptionPaymentMaxAggregateOutputType | null
+  }
+
+  type GetSubscriptionPaymentGroupByPayload<T extends SubscriptionPaymentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubscriptionPaymentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubscriptionPaymentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubscriptionPaymentGroupByOutputType[P]>
+            : GetScalarType<T[P], SubscriptionPaymentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubscriptionPaymentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    paymentProvider?: boolean
+    paymentProviderId?: boolean
+    amountPaidCents?: boolean
+    currency?: boolean
+    grantMicrocredits?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscriptionPayment"]>
+
+  export type SubscriptionPaymentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    paymentProvider?: boolean
+    paymentProviderId?: boolean
+    amountPaidCents?: boolean
+    currency?: boolean
+    grantMicrocredits?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscriptionPayment"]>
+
+  export type SubscriptionPaymentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    paymentProvider?: boolean
+    paymentProviderId?: boolean
+    amountPaidCents?: boolean
+    currency?: boolean
+    grantMicrocredits?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscriptionPayment"]>
+
+  export type SubscriptionPaymentSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    paymentProvider?: boolean
+    paymentProviderId?: boolean
+    amountPaidCents?: boolean
+    currency?: boolean
+    grantMicrocredits?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+  }
+
+  export type SubscriptionPaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "paymentProvider" | "paymentProviderId" | "amountPaidCents" | "currency" | "grantMicrocredits" | "balanceBeforeMicrocredits" | "balanceAfterMicrocredits" | "createdAt", ExtArgs["result"]["subscriptionPayment"]>
+  export type SubscriptionPaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }
+  export type SubscriptionPaymentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }
+  export type SubscriptionPaymentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }
+
+  export type $SubscriptionPaymentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SubscriptionPayment"
+    objects: {
+      wallet: Prisma.$UserWalletPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      paymentProvider: string
+      paymentProviderId: string
+      amountPaidCents: number
+      currency: string
+      grantMicrocredits: bigint
+      balanceBeforeMicrocredits: bigint
+      balanceAfterMicrocredits: bigint
+      createdAt: Date
+    }, ExtArgs["result"]["subscriptionPayment"]>
+    composites: {}
+  }
+
+  type SubscriptionPaymentGetPayload<S extends boolean | null | undefined | SubscriptionPaymentDefaultArgs> = $Result.GetResult<Prisma.$SubscriptionPaymentPayload, S>
+
+  type SubscriptionPaymentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SubscriptionPaymentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubscriptionPaymentCountAggregateInputType | true
+    }
+
+  export interface SubscriptionPaymentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SubscriptionPayment'], meta: { name: 'SubscriptionPayment' } }
+    /**
+     * Find zero or one SubscriptionPayment that matches the filter.
+     * @param {SubscriptionPaymentFindUniqueArgs} args - Arguments to find a SubscriptionPayment
+     * @example
+     * // Get one SubscriptionPayment
+     * const subscriptionPayment = await prisma.subscriptionPayment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SubscriptionPaymentFindUniqueArgs>(args: SelectSubset<T, SubscriptionPaymentFindUniqueArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SubscriptionPayment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SubscriptionPaymentFindUniqueOrThrowArgs} args - Arguments to find a SubscriptionPayment
+     * @example
+     * // Get one SubscriptionPayment
+     * const subscriptionPayment = await prisma.subscriptionPayment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SubscriptionPaymentFindUniqueOrThrowArgs>(args: SelectSubset<T, SubscriptionPaymentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SubscriptionPayment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPaymentFindFirstArgs} args - Arguments to find a SubscriptionPayment
+     * @example
+     * // Get one SubscriptionPayment
+     * const subscriptionPayment = await prisma.subscriptionPayment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SubscriptionPaymentFindFirstArgs>(args?: SelectSubset<T, SubscriptionPaymentFindFirstArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SubscriptionPayment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPaymentFindFirstOrThrowArgs} args - Arguments to find a SubscriptionPayment
+     * @example
+     * // Get one SubscriptionPayment
+     * const subscriptionPayment = await prisma.subscriptionPayment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SubscriptionPaymentFindFirstOrThrowArgs>(args?: SelectSubset<T, SubscriptionPaymentFindFirstOrThrowArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SubscriptionPayments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPaymentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SubscriptionPayments
+     * const subscriptionPayments = await prisma.subscriptionPayment.findMany()
+     * 
+     * // Get first 10 SubscriptionPayments
+     * const subscriptionPayments = await prisma.subscriptionPayment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const subscriptionPaymentWithIdOnly = await prisma.subscriptionPayment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SubscriptionPaymentFindManyArgs>(args?: SelectSubset<T, SubscriptionPaymentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SubscriptionPayment.
+     * @param {SubscriptionPaymentCreateArgs} args - Arguments to create a SubscriptionPayment.
+     * @example
+     * // Create one SubscriptionPayment
+     * const SubscriptionPayment = await prisma.subscriptionPayment.create({
+     *   data: {
+     *     // ... data to create a SubscriptionPayment
+     *   }
+     * })
+     * 
+     */
+    create<T extends SubscriptionPaymentCreateArgs>(args: SelectSubset<T, SubscriptionPaymentCreateArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SubscriptionPayments.
+     * @param {SubscriptionPaymentCreateManyArgs} args - Arguments to create many SubscriptionPayments.
+     * @example
+     * // Create many SubscriptionPayments
+     * const subscriptionPayment = await prisma.subscriptionPayment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SubscriptionPaymentCreateManyArgs>(args?: SelectSubset<T, SubscriptionPaymentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SubscriptionPayments and returns the data saved in the database.
+     * @param {SubscriptionPaymentCreateManyAndReturnArgs} args - Arguments to create many SubscriptionPayments.
+     * @example
+     * // Create many SubscriptionPayments
+     * const subscriptionPayment = await prisma.subscriptionPayment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SubscriptionPayments and only return the `id`
+     * const subscriptionPaymentWithIdOnly = await prisma.subscriptionPayment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SubscriptionPaymentCreateManyAndReturnArgs>(args?: SelectSubset<T, SubscriptionPaymentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SubscriptionPayment.
+     * @param {SubscriptionPaymentDeleteArgs} args - Arguments to delete one SubscriptionPayment.
+     * @example
+     * // Delete one SubscriptionPayment
+     * const SubscriptionPayment = await prisma.subscriptionPayment.delete({
+     *   where: {
+     *     // ... filter to delete one SubscriptionPayment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SubscriptionPaymentDeleteArgs>(args: SelectSubset<T, SubscriptionPaymentDeleteArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SubscriptionPayment.
+     * @param {SubscriptionPaymentUpdateArgs} args - Arguments to update one SubscriptionPayment.
+     * @example
+     * // Update one SubscriptionPayment
+     * const subscriptionPayment = await prisma.subscriptionPayment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SubscriptionPaymentUpdateArgs>(args: SelectSubset<T, SubscriptionPaymentUpdateArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SubscriptionPayments.
+     * @param {SubscriptionPaymentDeleteManyArgs} args - Arguments to filter SubscriptionPayments to delete.
+     * @example
+     * // Delete a few SubscriptionPayments
+     * const { count } = await prisma.subscriptionPayment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SubscriptionPaymentDeleteManyArgs>(args?: SelectSubset<T, SubscriptionPaymentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SubscriptionPayments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPaymentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SubscriptionPayments
+     * const subscriptionPayment = await prisma.subscriptionPayment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SubscriptionPaymentUpdateManyArgs>(args: SelectSubset<T, SubscriptionPaymentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SubscriptionPayments and returns the data updated in the database.
+     * @param {SubscriptionPaymentUpdateManyAndReturnArgs} args - Arguments to update many SubscriptionPayments.
+     * @example
+     * // Update many SubscriptionPayments
+     * const subscriptionPayment = await prisma.subscriptionPayment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SubscriptionPayments and only return the `id`
+     * const subscriptionPaymentWithIdOnly = await prisma.subscriptionPayment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SubscriptionPaymentUpdateManyAndReturnArgs>(args: SelectSubset<T, SubscriptionPaymentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SubscriptionPayment.
+     * @param {SubscriptionPaymentUpsertArgs} args - Arguments to update or create a SubscriptionPayment.
+     * @example
+     * // Update or create a SubscriptionPayment
+     * const subscriptionPayment = await prisma.subscriptionPayment.upsert({
+     *   create: {
+     *     // ... data to create a SubscriptionPayment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SubscriptionPayment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SubscriptionPaymentUpsertArgs>(args: SelectSubset<T, SubscriptionPaymentUpsertArgs<ExtArgs>>): Prisma__SubscriptionPaymentClient<$Result.GetResult<Prisma.$SubscriptionPaymentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SubscriptionPayments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPaymentCountArgs} args - Arguments to filter SubscriptionPayments to count.
+     * @example
+     * // Count the number of SubscriptionPayments
+     * const count = await prisma.subscriptionPayment.count({
+     *   where: {
+     *     // ... the filter for the SubscriptionPayments we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubscriptionPaymentCountArgs>(
+      args?: Subset<T, SubscriptionPaymentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubscriptionPaymentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SubscriptionPayment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPaymentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubscriptionPaymentAggregateArgs>(args: Subset<T, SubscriptionPaymentAggregateArgs>): Prisma.PrismaPromise<GetSubscriptionPaymentAggregateType<T>>
+
+    /**
+     * Group by SubscriptionPayment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionPaymentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubscriptionPaymentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubscriptionPaymentGroupByArgs['orderBy'] }
+        : { orderBy?: SubscriptionPaymentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubscriptionPaymentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubscriptionPaymentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SubscriptionPayment model
+   */
+  readonly fields: SubscriptionPaymentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SubscriptionPayment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SubscriptionPaymentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    wallet<T extends UserWalletDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserWalletDefaultArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SubscriptionPayment model
+   */
+  interface SubscriptionPaymentFieldRefs {
+    readonly id: FieldRef<"SubscriptionPayment", 'String'>
+    readonly userId: FieldRef<"SubscriptionPayment", 'String'>
+    readonly paymentProvider: FieldRef<"SubscriptionPayment", 'String'>
+    readonly paymentProviderId: FieldRef<"SubscriptionPayment", 'String'>
+    readonly amountPaidCents: FieldRef<"SubscriptionPayment", 'Int'>
+    readonly currency: FieldRef<"SubscriptionPayment", 'String'>
+    readonly grantMicrocredits: FieldRef<"SubscriptionPayment", 'BigInt'>
+    readonly balanceBeforeMicrocredits: FieldRef<"SubscriptionPayment", 'BigInt'>
+    readonly balanceAfterMicrocredits: FieldRef<"SubscriptionPayment", 'BigInt'>
+    readonly createdAt: FieldRef<"SubscriptionPayment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SubscriptionPayment findUnique
+   */
+  export type SubscriptionPaymentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPayment to fetch.
+     */
+    where: SubscriptionPaymentWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPayment findUniqueOrThrow
+   */
+  export type SubscriptionPaymentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPayment to fetch.
+     */
+    where: SubscriptionPaymentWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPayment findFirst
+   */
+  export type SubscriptionPaymentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPayment to fetch.
+     */
+    where?: SubscriptionPaymentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPayments to fetch.
+     */
+    orderBy?: SubscriptionPaymentOrderByWithRelationInput | SubscriptionPaymentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SubscriptionPayments.
+     */
+    cursor?: SubscriptionPaymentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPayments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPayments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SubscriptionPayments.
+     */
+    distinct?: SubscriptionPaymentScalarFieldEnum | SubscriptionPaymentScalarFieldEnum[]
+  }
+
+  /**
+   * SubscriptionPayment findFirstOrThrow
+   */
+  export type SubscriptionPaymentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPayment to fetch.
+     */
+    where?: SubscriptionPaymentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPayments to fetch.
+     */
+    orderBy?: SubscriptionPaymentOrderByWithRelationInput | SubscriptionPaymentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SubscriptionPayments.
+     */
+    cursor?: SubscriptionPaymentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPayments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPayments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SubscriptionPayments.
+     */
+    distinct?: SubscriptionPaymentScalarFieldEnum | SubscriptionPaymentScalarFieldEnum[]
+  }
+
+  /**
+   * SubscriptionPayment findMany
+   */
+  export type SubscriptionPaymentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * Filter, which SubscriptionPayments to fetch.
+     */
+    where?: SubscriptionPaymentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubscriptionPayments to fetch.
+     */
+    orderBy?: SubscriptionPaymentOrderByWithRelationInput | SubscriptionPaymentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SubscriptionPayments.
+     */
+    cursor?: SubscriptionPaymentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubscriptionPayments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubscriptionPayments.
+     */
+    skip?: number
+    distinct?: SubscriptionPaymentScalarFieldEnum | SubscriptionPaymentScalarFieldEnum[]
+  }
+
+  /**
+   * SubscriptionPayment create
+   */
+  export type SubscriptionPaymentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SubscriptionPayment.
+     */
+    data: XOR<SubscriptionPaymentCreateInput, SubscriptionPaymentUncheckedCreateInput>
+  }
+
+  /**
+   * SubscriptionPayment createMany
+   */
+  export type SubscriptionPaymentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SubscriptionPayments.
+     */
+    data: SubscriptionPaymentCreateManyInput | SubscriptionPaymentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SubscriptionPayment createManyAndReturn
+   */
+  export type SubscriptionPaymentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * The data used to create many SubscriptionPayments.
+     */
+    data: SubscriptionPaymentCreateManyInput | SubscriptionPaymentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SubscriptionPayment update
+   */
+  export type SubscriptionPaymentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SubscriptionPayment.
+     */
+    data: XOR<SubscriptionPaymentUpdateInput, SubscriptionPaymentUncheckedUpdateInput>
+    /**
+     * Choose, which SubscriptionPayment to update.
+     */
+    where: SubscriptionPaymentWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPayment updateMany
+   */
+  export type SubscriptionPaymentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SubscriptionPayments.
+     */
+    data: XOR<SubscriptionPaymentUpdateManyMutationInput, SubscriptionPaymentUncheckedUpdateManyInput>
+    /**
+     * Filter which SubscriptionPayments to update
+     */
+    where?: SubscriptionPaymentWhereInput
+    /**
+     * Limit how many SubscriptionPayments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SubscriptionPayment updateManyAndReturn
+   */
+  export type SubscriptionPaymentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * The data used to update SubscriptionPayments.
+     */
+    data: XOR<SubscriptionPaymentUpdateManyMutationInput, SubscriptionPaymentUncheckedUpdateManyInput>
+    /**
+     * Filter which SubscriptionPayments to update
+     */
+    where?: SubscriptionPaymentWhereInput
+    /**
+     * Limit how many SubscriptionPayments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SubscriptionPayment upsert
+   */
+  export type SubscriptionPaymentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SubscriptionPayment to update in case it exists.
+     */
+    where: SubscriptionPaymentWhereUniqueInput
+    /**
+     * In case the SubscriptionPayment found by the `where` argument doesn't exist, create a new SubscriptionPayment with this data.
+     */
+    create: XOR<SubscriptionPaymentCreateInput, SubscriptionPaymentUncheckedCreateInput>
+    /**
+     * In case the SubscriptionPayment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubscriptionPaymentUpdateInput, SubscriptionPaymentUncheckedUpdateInput>
+  }
+
+  /**
+   * SubscriptionPayment delete
+   */
+  export type SubscriptionPaymentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+    /**
+     * Filter which SubscriptionPayment to delete.
+     */
+    where: SubscriptionPaymentWhereUniqueInput
+  }
+
+  /**
+   * SubscriptionPayment deleteMany
+   */
+  export type SubscriptionPaymentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SubscriptionPayments to delete
+     */
+    where?: SubscriptionPaymentWhereInput
+    /**
+     * Limit how many SubscriptionPayments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SubscriptionPayment without action
+   */
+  export type SubscriptionPaymentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubscriptionPayment
+     */
+    select?: SubscriptionPaymentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SubscriptionPayment
+     */
+    omit?: SubscriptionPaymentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionPaymentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CreditUsage
+   */
+
+  export type AggregateCreditUsage = {
+    _count: CreditUsageCountAggregateOutputType | null
+    _avg: CreditUsageAvgAggregateOutputType | null
+    _sum: CreditUsageSumAggregateOutputType | null
+    _min: CreditUsageMinAggregateOutputType | null
+    _max: CreditUsageMaxAggregateOutputType | null
+  }
+
+  export type CreditUsageAvgAggregateOutputType = {
+    costMicrousd: number | null
+    debitMicrocredits: number | null
+    balanceBeforeMicrocredits: number | null
+    balanceAfterMicrocredits: number | null
+  }
+
+  export type CreditUsageSumAggregateOutputType = {
+    costMicrousd: bigint | null
+    debitMicrocredits: bigint | null
+    balanceBeforeMicrocredits: bigint | null
+    balanceAfterMicrocredits: bigint | null
+  }
+
+  export type CreditUsageMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    requestId: string | null
+    openrouterGenerationId: string | null
+    modelUsed: string | null
+    activityType: string | null
+    costMicrousd: bigint | null
+    debitMicrocredits: bigint | null
+    balanceBeforeMicrocredits: bigint | null
+    balanceAfterMicrocredits: bigint | null
+    createdAt: Date | null
+  }
+
+  export type CreditUsageMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    requestId: string | null
+    openrouterGenerationId: string | null
+    modelUsed: string | null
+    activityType: string | null
+    costMicrousd: bigint | null
+    debitMicrocredits: bigint | null
+    balanceBeforeMicrocredits: bigint | null
+    balanceAfterMicrocredits: bigint | null
+    createdAt: Date | null
+  }
+
+  export type CreditUsageCountAggregateOutputType = {
+    id: number
+    userId: number
+    requestId: number
+    openrouterGenerationId: number
+    modelUsed: number
+    activityType: number
+    costMicrousd: number
+    debitMicrocredits: number
+    tokenUsage: number
+    balanceBeforeMicrocredits: number
+    balanceAfterMicrocredits: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CreditUsageAvgAggregateInputType = {
+    costMicrousd?: true
+    debitMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+  }
+
+  export type CreditUsageSumAggregateInputType = {
+    costMicrousd?: true
+    debitMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+  }
+
+  export type CreditUsageMinAggregateInputType = {
+    id?: true
+    userId?: true
+    requestId?: true
+    openrouterGenerationId?: true
+    modelUsed?: true
+    activityType?: true
+    costMicrousd?: true
+    debitMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+    createdAt?: true
+  }
+
+  export type CreditUsageMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    requestId?: true
+    openrouterGenerationId?: true
+    modelUsed?: true
+    activityType?: true
+    costMicrousd?: true
+    debitMicrocredits?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+    createdAt?: true
+  }
+
+  export type CreditUsageCountAggregateInputType = {
+    id?: true
+    userId?: true
+    requestId?: true
+    openrouterGenerationId?: true
+    modelUsed?: true
+    activityType?: true
+    costMicrousd?: true
+    debitMicrocredits?: true
+    tokenUsage?: true
+    balanceBeforeMicrocredits?: true
+    balanceAfterMicrocredits?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CreditUsageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CreditUsage to aggregate.
+     */
+    where?: CreditUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CreditUsages to fetch.
+     */
+    orderBy?: CreditUsageOrderByWithRelationInput | CreditUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CreditUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CreditUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CreditUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CreditUsages
+    **/
+    _count?: true | CreditUsageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CreditUsageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CreditUsageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CreditUsageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CreditUsageMaxAggregateInputType
+  }
+
+  export type GetCreditUsageAggregateType<T extends CreditUsageAggregateArgs> = {
+        [P in keyof T & keyof AggregateCreditUsage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCreditUsage[P]>
+      : GetScalarType<T[P], AggregateCreditUsage[P]>
+  }
+
+
+
+
+  export type CreditUsageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CreditUsageWhereInput
+    orderBy?: CreditUsageOrderByWithAggregationInput | CreditUsageOrderByWithAggregationInput[]
+    by: CreditUsageScalarFieldEnum[] | CreditUsageScalarFieldEnum
+    having?: CreditUsageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CreditUsageCountAggregateInputType | true
+    _avg?: CreditUsageAvgAggregateInputType
+    _sum?: CreditUsageSumAggregateInputType
+    _min?: CreditUsageMinAggregateInputType
+    _max?: CreditUsageMaxAggregateInputType
+  }
+
+  export type CreditUsageGroupByOutputType = {
+    id: string
+    userId: string
+    requestId: string
+    openrouterGenerationId: string | null
+    modelUsed: string | null
+    activityType: string
+    costMicrousd: bigint
+    debitMicrocredits: bigint
+    tokenUsage: JsonValue | null
+    balanceBeforeMicrocredits: bigint
+    balanceAfterMicrocredits: bigint
+    createdAt: Date
+    _count: CreditUsageCountAggregateOutputType | null
+    _avg: CreditUsageAvgAggregateOutputType | null
+    _sum: CreditUsageSumAggregateOutputType | null
+    _min: CreditUsageMinAggregateOutputType | null
+    _max: CreditUsageMaxAggregateOutputType | null
+  }
+
+  type GetCreditUsageGroupByPayload<T extends CreditUsageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CreditUsageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CreditUsageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CreditUsageGroupByOutputType[P]>
+            : GetScalarType<T[P], CreditUsageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CreditUsageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    requestId?: boolean
+    openrouterGenerationId?: boolean
+    modelUsed?: boolean
+    activityType?: boolean
+    costMicrousd?: boolean
+    debitMicrocredits?: boolean
+    tokenUsage?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["creditUsage"]>
+
+  export type CreditUsageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    requestId?: boolean
+    openrouterGenerationId?: boolean
+    modelUsed?: boolean
+    activityType?: boolean
+    costMicrousd?: boolean
+    debitMicrocredits?: boolean
+    tokenUsage?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["creditUsage"]>
+
+  export type CreditUsageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    requestId?: boolean
+    openrouterGenerationId?: boolean
+    modelUsed?: boolean
+    activityType?: boolean
+    costMicrousd?: boolean
+    debitMicrocredits?: boolean
+    tokenUsage?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["creditUsage"]>
+
+  export type CreditUsageSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    requestId?: boolean
+    openrouterGenerationId?: boolean
+    modelUsed?: boolean
+    activityType?: boolean
+    costMicrousd?: boolean
+    debitMicrocredits?: boolean
+    tokenUsage?: boolean
+    balanceBeforeMicrocredits?: boolean
+    balanceAfterMicrocredits?: boolean
+    createdAt?: boolean
+  }
+
+  export type CreditUsageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "requestId" | "openrouterGenerationId" | "modelUsed" | "activityType" | "costMicrousd" | "debitMicrocredits" | "tokenUsage" | "balanceBeforeMicrocredits" | "balanceAfterMicrocredits" | "createdAt", ExtArgs["result"]["creditUsage"]>
+  export type CreditUsageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }
+  export type CreditUsageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }
+  export type CreditUsageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    wallet?: boolean | UserWalletDefaultArgs<ExtArgs>
+  }
+
+  export type $CreditUsagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CreditUsage"
+    objects: {
+      wallet: Prisma.$UserWalletPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      requestId: string
+      openrouterGenerationId: string | null
+      modelUsed: string | null
+      activityType: string
+      costMicrousd: bigint
+      debitMicrocredits: bigint
+      tokenUsage: Prisma.JsonValue | null
+      balanceBeforeMicrocredits: bigint
+      balanceAfterMicrocredits: bigint
+      createdAt: Date
+    }, ExtArgs["result"]["creditUsage"]>
+    composites: {}
+  }
+
+  type CreditUsageGetPayload<S extends boolean | null | undefined | CreditUsageDefaultArgs> = $Result.GetResult<Prisma.$CreditUsagePayload, S>
+
+  type CreditUsageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CreditUsageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CreditUsageCountAggregateInputType | true
+    }
+
+  export interface CreditUsageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CreditUsage'], meta: { name: 'CreditUsage' } }
+    /**
+     * Find zero or one CreditUsage that matches the filter.
+     * @param {CreditUsageFindUniqueArgs} args - Arguments to find a CreditUsage
+     * @example
+     * // Get one CreditUsage
+     * const creditUsage = await prisma.creditUsage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CreditUsageFindUniqueArgs>(args: SelectSubset<T, CreditUsageFindUniqueArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CreditUsage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CreditUsageFindUniqueOrThrowArgs} args - Arguments to find a CreditUsage
+     * @example
+     * // Get one CreditUsage
+     * const creditUsage = await prisma.creditUsage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CreditUsageFindUniqueOrThrowArgs>(args: SelectSubset<T, CreditUsageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CreditUsage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CreditUsageFindFirstArgs} args - Arguments to find a CreditUsage
+     * @example
+     * // Get one CreditUsage
+     * const creditUsage = await prisma.creditUsage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CreditUsageFindFirstArgs>(args?: SelectSubset<T, CreditUsageFindFirstArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CreditUsage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CreditUsageFindFirstOrThrowArgs} args - Arguments to find a CreditUsage
+     * @example
+     * // Get one CreditUsage
+     * const creditUsage = await prisma.creditUsage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CreditUsageFindFirstOrThrowArgs>(args?: SelectSubset<T, CreditUsageFindFirstOrThrowArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CreditUsages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CreditUsageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CreditUsages
+     * const creditUsages = await prisma.creditUsage.findMany()
+     * 
+     * // Get first 10 CreditUsages
+     * const creditUsages = await prisma.creditUsage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const creditUsageWithIdOnly = await prisma.creditUsage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CreditUsageFindManyArgs>(args?: SelectSubset<T, CreditUsageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CreditUsage.
+     * @param {CreditUsageCreateArgs} args - Arguments to create a CreditUsage.
+     * @example
+     * // Create one CreditUsage
+     * const CreditUsage = await prisma.creditUsage.create({
+     *   data: {
+     *     // ... data to create a CreditUsage
+     *   }
+     * })
+     * 
+     */
+    create<T extends CreditUsageCreateArgs>(args: SelectSubset<T, CreditUsageCreateArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CreditUsages.
+     * @param {CreditUsageCreateManyArgs} args - Arguments to create many CreditUsages.
+     * @example
+     * // Create many CreditUsages
+     * const creditUsage = await prisma.creditUsage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CreditUsageCreateManyArgs>(args?: SelectSubset<T, CreditUsageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CreditUsages and returns the data saved in the database.
+     * @param {CreditUsageCreateManyAndReturnArgs} args - Arguments to create many CreditUsages.
+     * @example
+     * // Create many CreditUsages
+     * const creditUsage = await prisma.creditUsage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CreditUsages and only return the `id`
+     * const creditUsageWithIdOnly = await prisma.creditUsage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CreditUsageCreateManyAndReturnArgs>(args?: SelectSubset<T, CreditUsageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CreditUsage.
+     * @param {CreditUsageDeleteArgs} args - Arguments to delete one CreditUsage.
+     * @example
+     * // Delete one CreditUsage
+     * const CreditUsage = await prisma.creditUsage.delete({
+     *   where: {
+     *     // ... filter to delete one CreditUsage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CreditUsageDeleteArgs>(args: SelectSubset<T, CreditUsageDeleteArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CreditUsage.
+     * @param {CreditUsageUpdateArgs} args - Arguments to update one CreditUsage.
+     * @example
+     * // Update one CreditUsage
+     * const creditUsage = await prisma.creditUsage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CreditUsageUpdateArgs>(args: SelectSubset<T, CreditUsageUpdateArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CreditUsages.
+     * @param {CreditUsageDeleteManyArgs} args - Arguments to filter CreditUsages to delete.
+     * @example
+     * // Delete a few CreditUsages
+     * const { count } = await prisma.creditUsage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CreditUsageDeleteManyArgs>(args?: SelectSubset<T, CreditUsageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CreditUsages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CreditUsageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CreditUsages
+     * const creditUsage = await prisma.creditUsage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CreditUsageUpdateManyArgs>(args: SelectSubset<T, CreditUsageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CreditUsages and returns the data updated in the database.
+     * @param {CreditUsageUpdateManyAndReturnArgs} args - Arguments to update many CreditUsages.
+     * @example
+     * // Update many CreditUsages
+     * const creditUsage = await prisma.creditUsage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CreditUsages and only return the `id`
+     * const creditUsageWithIdOnly = await prisma.creditUsage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CreditUsageUpdateManyAndReturnArgs>(args: SelectSubset<T, CreditUsageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CreditUsage.
+     * @param {CreditUsageUpsertArgs} args - Arguments to update or create a CreditUsage.
+     * @example
+     * // Update or create a CreditUsage
+     * const creditUsage = await prisma.creditUsage.upsert({
+     *   create: {
+     *     // ... data to create a CreditUsage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CreditUsage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CreditUsageUpsertArgs>(args: SelectSubset<T, CreditUsageUpsertArgs<ExtArgs>>): Prisma__CreditUsageClient<$Result.GetResult<Prisma.$CreditUsagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CreditUsages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CreditUsageCountArgs} args - Arguments to filter CreditUsages to count.
+     * @example
+     * // Count the number of CreditUsages
+     * const count = await prisma.creditUsage.count({
+     *   where: {
+     *     // ... the filter for the CreditUsages we want to count
+     *   }
+     * })
+    **/
+    count<T extends CreditUsageCountArgs>(
+      args?: Subset<T, CreditUsageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CreditUsageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CreditUsage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CreditUsageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CreditUsageAggregateArgs>(args: Subset<T, CreditUsageAggregateArgs>): Prisma.PrismaPromise<GetCreditUsageAggregateType<T>>
+
+    /**
+     * Group by CreditUsage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CreditUsageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CreditUsageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CreditUsageGroupByArgs['orderBy'] }
+        : { orderBy?: CreditUsageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CreditUsageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCreditUsageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CreditUsage model
+   */
+  readonly fields: CreditUsageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CreditUsage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CreditUsageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    wallet<T extends UserWalletDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserWalletDefaultArgs<ExtArgs>>): Prisma__UserWalletClient<$Result.GetResult<Prisma.$UserWalletPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CreditUsage model
+   */
+  interface CreditUsageFieldRefs {
+    readonly id: FieldRef<"CreditUsage", 'String'>
+    readonly userId: FieldRef<"CreditUsage", 'String'>
+    readonly requestId: FieldRef<"CreditUsage", 'String'>
+    readonly openrouterGenerationId: FieldRef<"CreditUsage", 'String'>
+    readonly modelUsed: FieldRef<"CreditUsage", 'String'>
+    readonly activityType: FieldRef<"CreditUsage", 'String'>
+    readonly costMicrousd: FieldRef<"CreditUsage", 'BigInt'>
+    readonly debitMicrocredits: FieldRef<"CreditUsage", 'BigInt'>
+    readonly tokenUsage: FieldRef<"CreditUsage", 'Json'>
+    readonly balanceBeforeMicrocredits: FieldRef<"CreditUsage", 'BigInt'>
+    readonly balanceAfterMicrocredits: FieldRef<"CreditUsage", 'BigInt'>
+    readonly createdAt: FieldRef<"CreditUsage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CreditUsage findUnique
+   */
+  export type CreditUsageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which CreditUsage to fetch.
+     */
+    where: CreditUsageWhereUniqueInput
+  }
+
+  /**
+   * CreditUsage findUniqueOrThrow
+   */
+  export type CreditUsageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which CreditUsage to fetch.
+     */
+    where: CreditUsageWhereUniqueInput
+  }
+
+  /**
+   * CreditUsage findFirst
+   */
+  export type CreditUsageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which CreditUsage to fetch.
+     */
+    where?: CreditUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CreditUsages to fetch.
+     */
+    orderBy?: CreditUsageOrderByWithRelationInput | CreditUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CreditUsages.
+     */
+    cursor?: CreditUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CreditUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CreditUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CreditUsages.
+     */
+    distinct?: CreditUsageScalarFieldEnum | CreditUsageScalarFieldEnum[]
+  }
+
+  /**
+   * CreditUsage findFirstOrThrow
+   */
+  export type CreditUsageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which CreditUsage to fetch.
+     */
+    where?: CreditUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CreditUsages to fetch.
+     */
+    orderBy?: CreditUsageOrderByWithRelationInput | CreditUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CreditUsages.
+     */
+    cursor?: CreditUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CreditUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CreditUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CreditUsages.
+     */
+    distinct?: CreditUsageScalarFieldEnum | CreditUsageScalarFieldEnum[]
+  }
+
+  /**
+   * CreditUsage findMany
+   */
+  export type CreditUsageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which CreditUsages to fetch.
+     */
+    where?: CreditUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CreditUsages to fetch.
+     */
+    orderBy?: CreditUsageOrderByWithRelationInput | CreditUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CreditUsages.
+     */
+    cursor?: CreditUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CreditUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CreditUsages.
+     */
+    skip?: number
+    distinct?: CreditUsageScalarFieldEnum | CreditUsageScalarFieldEnum[]
+  }
+
+  /**
+   * CreditUsage create
+   */
+  export type CreditUsageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CreditUsage.
+     */
+    data: XOR<CreditUsageCreateInput, CreditUsageUncheckedCreateInput>
+  }
+
+  /**
+   * CreditUsage createMany
+   */
+  export type CreditUsageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CreditUsages.
+     */
+    data: CreditUsageCreateManyInput | CreditUsageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CreditUsage createManyAndReturn
+   */
+  export type CreditUsageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * The data used to create many CreditUsages.
+     */
+    data: CreditUsageCreateManyInput | CreditUsageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CreditUsage update
+   */
+  export type CreditUsageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CreditUsage.
+     */
+    data: XOR<CreditUsageUpdateInput, CreditUsageUncheckedUpdateInput>
+    /**
+     * Choose, which CreditUsage to update.
+     */
+    where: CreditUsageWhereUniqueInput
+  }
+
+  /**
+   * CreditUsage updateMany
+   */
+  export type CreditUsageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CreditUsages.
+     */
+    data: XOR<CreditUsageUpdateManyMutationInput, CreditUsageUncheckedUpdateManyInput>
+    /**
+     * Filter which CreditUsages to update
+     */
+    where?: CreditUsageWhereInput
+    /**
+     * Limit how many CreditUsages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CreditUsage updateManyAndReturn
+   */
+  export type CreditUsageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * The data used to update CreditUsages.
+     */
+    data: XOR<CreditUsageUpdateManyMutationInput, CreditUsageUncheckedUpdateManyInput>
+    /**
+     * Filter which CreditUsages to update
+     */
+    where?: CreditUsageWhereInput
+    /**
+     * Limit how many CreditUsages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CreditUsage upsert
+   */
+  export type CreditUsageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CreditUsage to update in case it exists.
+     */
+    where: CreditUsageWhereUniqueInput
+    /**
+     * In case the CreditUsage found by the `where` argument doesn't exist, create a new CreditUsage with this data.
+     */
+    create: XOR<CreditUsageCreateInput, CreditUsageUncheckedCreateInput>
+    /**
+     * In case the CreditUsage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CreditUsageUpdateInput, CreditUsageUncheckedUpdateInput>
+  }
+
+  /**
+   * CreditUsage delete
+   */
+  export type CreditUsageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+    /**
+     * Filter which CreditUsage to delete.
+     */
+    where: CreditUsageWhereUniqueInput
+  }
+
+  /**
+   * CreditUsage deleteMany
+   */
+  export type CreditUsageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CreditUsages to delete
+     */
+    where?: CreditUsageWhereInput
+    /**
+     * Limit how many CreditUsages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CreditUsage without action
+   */
+  export type CreditUsageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CreditUsage
+     */
+    select?: CreditUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CreditUsage
+     */
+    omit?: CreditUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CreditUsageInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8100,6 +11976,53 @@ export namespace Prisma {
   };
 
   export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
+
+
+  export const UserWalletScalarFieldEnum: {
+    userId: 'userId',
+    balanceMicrocredits: 'balanceMicrocredits',
+    subscriptionStatus: 'subscriptionStatus',
+    currentPeriodEnd: 'currentPeriodEnd',
+    capMicrocredits: 'capMicrocredits',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserWalletScalarFieldEnum = (typeof UserWalletScalarFieldEnum)[keyof typeof UserWalletScalarFieldEnum]
+
+
+  export const SubscriptionPaymentScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    paymentProvider: 'paymentProvider',
+    paymentProviderId: 'paymentProviderId',
+    amountPaidCents: 'amountPaidCents',
+    currency: 'currency',
+    grantMicrocredits: 'grantMicrocredits',
+    balanceBeforeMicrocredits: 'balanceBeforeMicrocredits',
+    balanceAfterMicrocredits: 'balanceAfterMicrocredits',
+    createdAt: 'createdAt'
+  };
+
+  export type SubscriptionPaymentScalarFieldEnum = (typeof SubscriptionPaymentScalarFieldEnum)[keyof typeof SubscriptionPaymentScalarFieldEnum]
+
+
+  export const CreditUsageScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    requestId: 'requestId',
+    openrouterGenerationId: 'openrouterGenerationId',
+    modelUsed: 'modelUsed',
+    activityType: 'activityType',
+    costMicrousd: 'costMicrousd',
+    debitMicrocredits: 'debitMicrocredits',
+    tokenUsage: 'tokenUsage',
+    balanceBeforeMicrocredits: 'balanceBeforeMicrocredits',
+    balanceAfterMicrocredits: 'balanceAfterMicrocredits',
+    createdAt: 'createdAt'
+  };
+
+  export type CreditUsageScalarFieldEnum = (typeof CreditUsageScalarFieldEnum)[keyof typeof CreditUsageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8212,6 +12135,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'BigInt'
+   */
+  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+  /**
+   * Reference to a field of type 'BigInt[]'
+   */
+  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -8303,6 +12240,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     projects?: ProjectListRelationFilter
+    wallet?: XOR<UserWalletNullableScalarRelationFilter, UserWalletWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8313,6 +12251,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projects?: ProjectOrderByRelationAggregateInput
+    wallet?: UserWalletOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8326,6 +12265,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     projects?: ProjectListRelationFilter
+    wallet?: XOR<UserWalletNullableScalarRelationFilter, UserWalletWhereInput> | null
   }, "id">
 
   export type UserOrderByWithAggregationInput = {
@@ -8624,6 +12564,253 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Message"> | Date | string
   }
 
+  export type UserWalletWhereInput = {
+    AND?: UserWalletWhereInput | UserWalletWhereInput[]
+    OR?: UserWalletWhereInput[]
+    NOT?: UserWalletWhereInput | UserWalletWhereInput[]
+    userId?: StringFilter<"UserWallet"> | string
+    balanceMicrocredits?: BigIntFilter<"UserWallet"> | bigint | number
+    subscriptionStatus?: StringFilter<"UserWallet"> | string
+    currentPeriodEnd?: DateTimeNullableFilter<"UserWallet"> | Date | string | null
+    capMicrocredits?: BigIntFilter<"UserWallet"> | bigint | number
+    createdAt?: DateTimeFilter<"UserWallet"> | Date | string
+    updatedAt?: DateTimeFilter<"UserWallet"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    subscriptionPayments?: SubscriptionPaymentListRelationFilter
+    creditUsage?: CreditUsageListRelationFilter
+  }
+
+  export type UserWalletOrderByWithRelationInput = {
+    userId?: SortOrder
+    balanceMicrocredits?: SortOrder
+    subscriptionStatus?: SortOrder
+    currentPeriodEnd?: SortOrderInput | SortOrder
+    capMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    subscriptionPayments?: SubscriptionPaymentOrderByRelationAggregateInput
+    creditUsage?: CreditUsageOrderByRelationAggregateInput
+  }
+
+  export type UserWalletWhereUniqueInput = Prisma.AtLeast<{
+    userId?: string
+    AND?: UserWalletWhereInput | UserWalletWhereInput[]
+    OR?: UserWalletWhereInput[]
+    NOT?: UserWalletWhereInput | UserWalletWhereInput[]
+    balanceMicrocredits?: BigIntFilter<"UserWallet"> | bigint | number
+    subscriptionStatus?: StringFilter<"UserWallet"> | string
+    currentPeriodEnd?: DateTimeNullableFilter<"UserWallet"> | Date | string | null
+    capMicrocredits?: BigIntFilter<"UserWallet"> | bigint | number
+    createdAt?: DateTimeFilter<"UserWallet"> | Date | string
+    updatedAt?: DateTimeFilter<"UserWallet"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    subscriptionPayments?: SubscriptionPaymentListRelationFilter
+    creditUsage?: CreditUsageListRelationFilter
+  }, "userId">
+
+  export type UserWalletOrderByWithAggregationInput = {
+    userId?: SortOrder
+    balanceMicrocredits?: SortOrder
+    subscriptionStatus?: SortOrder
+    currentPeriodEnd?: SortOrderInput | SortOrder
+    capMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserWalletCountOrderByAggregateInput
+    _avg?: UserWalletAvgOrderByAggregateInput
+    _max?: UserWalletMaxOrderByAggregateInput
+    _min?: UserWalletMinOrderByAggregateInput
+    _sum?: UserWalletSumOrderByAggregateInput
+  }
+
+  export type UserWalletScalarWhereWithAggregatesInput = {
+    AND?: UserWalletScalarWhereWithAggregatesInput | UserWalletScalarWhereWithAggregatesInput[]
+    OR?: UserWalletScalarWhereWithAggregatesInput[]
+    NOT?: UserWalletScalarWhereWithAggregatesInput | UserWalletScalarWhereWithAggregatesInput[]
+    userId?: StringWithAggregatesFilter<"UserWallet"> | string
+    balanceMicrocredits?: BigIntWithAggregatesFilter<"UserWallet"> | bigint | number
+    subscriptionStatus?: StringWithAggregatesFilter<"UserWallet"> | string
+    currentPeriodEnd?: DateTimeNullableWithAggregatesFilter<"UserWallet"> | Date | string | null
+    capMicrocredits?: BigIntWithAggregatesFilter<"UserWallet"> | bigint | number
+    createdAt?: DateTimeWithAggregatesFilter<"UserWallet"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserWallet"> | Date | string
+  }
+
+  export type SubscriptionPaymentWhereInput = {
+    AND?: SubscriptionPaymentWhereInput | SubscriptionPaymentWhereInput[]
+    OR?: SubscriptionPaymentWhereInput[]
+    NOT?: SubscriptionPaymentWhereInput | SubscriptionPaymentWhereInput[]
+    id?: StringFilter<"SubscriptionPayment"> | string
+    userId?: StringFilter<"SubscriptionPayment"> | string
+    paymentProvider?: StringFilter<"SubscriptionPayment"> | string
+    paymentProviderId?: StringFilter<"SubscriptionPayment"> | string
+    amountPaidCents?: IntFilter<"SubscriptionPayment"> | number
+    currency?: StringFilter<"SubscriptionPayment"> | string
+    grantMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    balanceBeforeMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    balanceAfterMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    createdAt?: DateTimeFilter<"SubscriptionPayment"> | Date | string
+    wallet?: XOR<UserWalletScalarRelationFilter, UserWalletWhereInput>
+  }
+
+  export type SubscriptionPaymentOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    paymentProvider?: SortOrder
+    paymentProviderId?: SortOrder
+    amountPaidCents?: SortOrder
+    currency?: SortOrder
+    grantMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    wallet?: UserWalletOrderByWithRelationInput
+  }
+
+  export type SubscriptionPaymentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    paymentProviderId?: string
+    AND?: SubscriptionPaymentWhereInput | SubscriptionPaymentWhereInput[]
+    OR?: SubscriptionPaymentWhereInput[]
+    NOT?: SubscriptionPaymentWhereInput | SubscriptionPaymentWhereInput[]
+    userId?: StringFilter<"SubscriptionPayment"> | string
+    paymentProvider?: StringFilter<"SubscriptionPayment"> | string
+    amountPaidCents?: IntFilter<"SubscriptionPayment"> | number
+    currency?: StringFilter<"SubscriptionPayment"> | string
+    grantMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    balanceBeforeMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    balanceAfterMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    createdAt?: DateTimeFilter<"SubscriptionPayment"> | Date | string
+    wallet?: XOR<UserWalletScalarRelationFilter, UserWalletWhereInput>
+  }, "id" | "paymentProviderId">
+
+  export type SubscriptionPaymentOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    paymentProvider?: SortOrder
+    paymentProviderId?: SortOrder
+    amountPaidCents?: SortOrder
+    currency?: SortOrder
+    grantMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    _count?: SubscriptionPaymentCountOrderByAggregateInput
+    _avg?: SubscriptionPaymentAvgOrderByAggregateInput
+    _max?: SubscriptionPaymentMaxOrderByAggregateInput
+    _min?: SubscriptionPaymentMinOrderByAggregateInput
+    _sum?: SubscriptionPaymentSumOrderByAggregateInput
+  }
+
+  export type SubscriptionPaymentScalarWhereWithAggregatesInput = {
+    AND?: SubscriptionPaymentScalarWhereWithAggregatesInput | SubscriptionPaymentScalarWhereWithAggregatesInput[]
+    OR?: SubscriptionPaymentScalarWhereWithAggregatesInput[]
+    NOT?: SubscriptionPaymentScalarWhereWithAggregatesInput | SubscriptionPaymentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SubscriptionPayment"> | string
+    userId?: StringWithAggregatesFilter<"SubscriptionPayment"> | string
+    paymentProvider?: StringWithAggregatesFilter<"SubscriptionPayment"> | string
+    paymentProviderId?: StringWithAggregatesFilter<"SubscriptionPayment"> | string
+    amountPaidCents?: IntWithAggregatesFilter<"SubscriptionPayment"> | number
+    currency?: StringWithAggregatesFilter<"SubscriptionPayment"> | string
+    grantMicrocredits?: BigIntWithAggregatesFilter<"SubscriptionPayment"> | bigint | number
+    balanceBeforeMicrocredits?: BigIntWithAggregatesFilter<"SubscriptionPayment"> | bigint | number
+    balanceAfterMicrocredits?: BigIntWithAggregatesFilter<"SubscriptionPayment"> | bigint | number
+    createdAt?: DateTimeWithAggregatesFilter<"SubscriptionPayment"> | Date | string
+  }
+
+  export type CreditUsageWhereInput = {
+    AND?: CreditUsageWhereInput | CreditUsageWhereInput[]
+    OR?: CreditUsageWhereInput[]
+    NOT?: CreditUsageWhereInput | CreditUsageWhereInput[]
+    id?: StringFilter<"CreditUsage"> | string
+    userId?: StringFilter<"CreditUsage"> | string
+    requestId?: StringFilter<"CreditUsage"> | string
+    openrouterGenerationId?: StringNullableFilter<"CreditUsage"> | string | null
+    modelUsed?: StringNullableFilter<"CreditUsage"> | string | null
+    activityType?: StringFilter<"CreditUsage"> | string
+    costMicrousd?: BigIntFilter<"CreditUsage"> | bigint | number
+    debitMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    tokenUsage?: JsonNullableFilter<"CreditUsage">
+    balanceBeforeMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    balanceAfterMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    createdAt?: DateTimeFilter<"CreditUsage"> | Date | string
+    wallet?: XOR<UserWalletScalarRelationFilter, UserWalletWhereInput>
+  }
+
+  export type CreditUsageOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    requestId?: SortOrder
+    openrouterGenerationId?: SortOrderInput | SortOrder
+    modelUsed?: SortOrderInput | SortOrder
+    activityType?: SortOrder
+    costMicrousd?: SortOrder
+    debitMicrocredits?: SortOrder
+    tokenUsage?: SortOrderInput | SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    wallet?: UserWalletOrderByWithRelationInput
+  }
+
+  export type CreditUsageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    requestId?: string
+    AND?: CreditUsageWhereInput | CreditUsageWhereInput[]
+    OR?: CreditUsageWhereInput[]
+    NOT?: CreditUsageWhereInput | CreditUsageWhereInput[]
+    userId?: StringFilter<"CreditUsage"> | string
+    openrouterGenerationId?: StringNullableFilter<"CreditUsage"> | string | null
+    modelUsed?: StringNullableFilter<"CreditUsage"> | string | null
+    activityType?: StringFilter<"CreditUsage"> | string
+    costMicrousd?: BigIntFilter<"CreditUsage"> | bigint | number
+    debitMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    tokenUsage?: JsonNullableFilter<"CreditUsage">
+    balanceBeforeMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    balanceAfterMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    createdAt?: DateTimeFilter<"CreditUsage"> | Date | string
+    wallet?: XOR<UserWalletScalarRelationFilter, UserWalletWhereInput>
+  }, "id" | "requestId">
+
+  export type CreditUsageOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    requestId?: SortOrder
+    openrouterGenerationId?: SortOrderInput | SortOrder
+    modelUsed?: SortOrderInput | SortOrder
+    activityType?: SortOrder
+    costMicrousd?: SortOrder
+    debitMicrocredits?: SortOrder
+    tokenUsage?: SortOrderInput | SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    _count?: CreditUsageCountOrderByAggregateInput
+    _avg?: CreditUsageAvgOrderByAggregateInput
+    _max?: CreditUsageMaxOrderByAggregateInput
+    _min?: CreditUsageMinOrderByAggregateInput
+    _sum?: CreditUsageSumOrderByAggregateInput
+  }
+
+  export type CreditUsageScalarWhereWithAggregatesInput = {
+    AND?: CreditUsageScalarWhereWithAggregatesInput | CreditUsageScalarWhereWithAggregatesInput[]
+    OR?: CreditUsageScalarWhereWithAggregatesInput[]
+    NOT?: CreditUsageScalarWhereWithAggregatesInput | CreditUsageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CreditUsage"> | string
+    userId?: StringWithAggregatesFilter<"CreditUsage"> | string
+    requestId?: StringWithAggregatesFilter<"CreditUsage"> | string
+    openrouterGenerationId?: StringNullableWithAggregatesFilter<"CreditUsage"> | string | null
+    modelUsed?: StringNullableWithAggregatesFilter<"CreditUsage"> | string | null
+    activityType?: StringWithAggregatesFilter<"CreditUsage"> | string
+    costMicrousd?: BigIntWithAggregatesFilter<"CreditUsage"> | bigint | number
+    debitMicrocredits?: BigIntWithAggregatesFilter<"CreditUsage"> | bigint | number
+    tokenUsage?: JsonNullableWithAggregatesFilter<"CreditUsage">
+    balanceBeforeMicrocredits?: BigIntWithAggregatesFilter<"CreditUsage"> | bigint | number
+    balanceAfterMicrocredits?: BigIntWithAggregatesFilter<"CreditUsage"> | bigint | number
+    createdAt?: DateTimeWithAggregatesFilter<"CreditUsage"> | Date | string
+  }
+
   export type AvailableModelCreateInput = {
     id?: string
     name: string
@@ -8702,6 +12889,7 @@ export namespace Prisma {
     createdAt: Date | string
     updatedAt?: Date | string
     projects?: ProjectCreateNestedManyWithoutUserInput
+    wallet?: UserWalletCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8712,6 +12900,7 @@ export namespace Prisma {
     createdAt: Date | string
     updatedAt?: Date | string
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    wallet?: UserWalletUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8722,6 +12911,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUpdateManyWithoutUserNestedInput
+    wallet?: UserWalletUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8732,6 +12922,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    wallet?: UserWalletUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -9045,6 +13236,277 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserWalletCreateInput = {
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutWalletInput
+    subscriptionPayments?: SubscriptionPaymentCreateNestedManyWithoutWalletInput
+    creditUsage?: CreditUsageCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletUncheckedCreateInput = {
+    userId: string
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subscriptionPayments?: SubscriptionPaymentUncheckedCreateNestedManyWithoutWalletInput
+    creditUsage?: CreditUsageUncheckedCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletUpdateInput = {
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutWalletNestedInput
+    subscriptionPayments?: SubscriptionPaymentUpdateManyWithoutWalletNestedInput
+    creditUsage?: CreditUsageUpdateManyWithoutWalletNestedInput
+  }
+
+  export type UserWalletUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptionPayments?: SubscriptionPaymentUncheckedUpdateManyWithoutWalletNestedInput
+    creditUsage?: CreditUsageUncheckedUpdateManyWithoutWalletNestedInput
+  }
+
+  export type UserWalletCreateManyInput = {
+    userId: string
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserWalletUpdateManyMutationInput = {
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserWalletUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPaymentCreateInput = {
+    id?: string
+    paymentProvider: string
+    paymentProviderId: string
+    amountPaidCents: number
+    currency?: string
+    grantMicrocredits: bigint | number
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+    wallet: UserWalletCreateNestedOneWithoutSubscriptionPaymentsInput
+  }
+
+  export type SubscriptionPaymentUncheckedCreateInput = {
+    id?: string
+    userId: string
+    paymentProvider: string
+    paymentProviderId: string
+    amountPaidCents: number
+    currency?: string
+    grantMicrocredits: bigint | number
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type SubscriptionPaymentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    paymentProvider?: StringFieldUpdateOperationsInput | string
+    paymentProviderId?: StringFieldUpdateOperationsInput | string
+    amountPaidCents?: IntFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    grantMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wallet?: UserWalletUpdateOneRequiredWithoutSubscriptionPaymentsNestedInput
+  }
+
+  export type SubscriptionPaymentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    paymentProvider?: StringFieldUpdateOperationsInput | string
+    paymentProviderId?: StringFieldUpdateOperationsInput | string
+    amountPaidCents?: IntFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    grantMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPaymentCreateManyInput = {
+    id?: string
+    userId: string
+    paymentProvider: string
+    paymentProviderId: string
+    amountPaidCents: number
+    currency?: string
+    grantMicrocredits: bigint | number
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type SubscriptionPaymentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    paymentProvider?: StringFieldUpdateOperationsInput | string
+    paymentProviderId?: StringFieldUpdateOperationsInput | string
+    amountPaidCents?: IntFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    grantMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPaymentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    paymentProvider?: StringFieldUpdateOperationsInput | string
+    paymentProviderId?: StringFieldUpdateOperationsInput | string
+    amountPaidCents?: IntFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    grantMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CreditUsageCreateInput = {
+    id?: string
+    requestId: string
+    openrouterGenerationId?: string | null
+    modelUsed?: string | null
+    activityType: string
+    costMicrousd: bigint | number
+    debitMicrocredits: bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+    wallet: UserWalletCreateNestedOneWithoutCreditUsageInput
+  }
+
+  export type CreditUsageUncheckedCreateInput = {
+    id?: string
+    userId: string
+    requestId: string
+    openrouterGenerationId?: string | null
+    modelUsed?: string | null
+    activityType: string
+    costMicrousd: bigint | number
+    debitMicrocredits: bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type CreditUsageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    openrouterGenerationId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    activityType?: StringFieldUpdateOperationsInput | string
+    costMicrousd?: BigIntFieldUpdateOperationsInput | bigint | number
+    debitMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wallet?: UserWalletUpdateOneRequiredWithoutCreditUsageNestedInput
+  }
+
+  export type CreditUsageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    openrouterGenerationId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    activityType?: StringFieldUpdateOperationsInput | string
+    costMicrousd?: BigIntFieldUpdateOperationsInput | bigint | number
+    debitMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CreditUsageCreateManyInput = {
+    id?: string
+    userId: string
+    requestId: string
+    openrouterGenerationId?: string | null
+    modelUsed?: string | null
+    activityType: string
+    costMicrousd: bigint | number
+    debitMicrocredits: bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type CreditUsageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    openrouterGenerationId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    activityType?: StringFieldUpdateOperationsInput | string
+    costMicrousd?: BigIntFieldUpdateOperationsInput | bigint | number
+    debitMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CreditUsageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    openrouterGenerationId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    activityType?: StringFieldUpdateOperationsInput | string
+    costMicrousd?: BigIntFieldUpdateOperationsInput | bigint | number
+    debitMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -9257,6 +13719,11 @@ export namespace Prisma {
     every?: ProjectWhereInput
     some?: ProjectWhereInput
     none?: ProjectWhereInput
+  }
+
+  export type UserWalletNullableScalarRelationFilter = {
+    is?: UserWalletWhereInput | null
+    isNot?: UserWalletWhereInput | null
   }
 
   export type ProjectOrderByRelationAggregateInput = {
@@ -9523,6 +13990,233 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type BigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type SubscriptionPaymentListRelationFilter = {
+    every?: SubscriptionPaymentWhereInput
+    some?: SubscriptionPaymentWhereInput
+    none?: SubscriptionPaymentWhereInput
+  }
+
+  export type CreditUsageListRelationFilter = {
+    every?: CreditUsageWhereInput
+    some?: CreditUsageWhereInput
+    none?: CreditUsageWhereInput
+  }
+
+  export type SubscriptionPaymentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CreditUsageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserWalletCountOrderByAggregateInput = {
+    userId?: SortOrder
+    balanceMicrocredits?: SortOrder
+    subscriptionStatus?: SortOrder
+    currentPeriodEnd?: SortOrder
+    capMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserWalletAvgOrderByAggregateInput = {
+    balanceMicrocredits?: SortOrder
+    capMicrocredits?: SortOrder
+  }
+
+  export type UserWalletMaxOrderByAggregateInput = {
+    userId?: SortOrder
+    balanceMicrocredits?: SortOrder
+    subscriptionStatus?: SortOrder
+    currentPeriodEnd?: SortOrder
+    capMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserWalletMinOrderByAggregateInput = {
+    userId?: SortOrder
+    balanceMicrocredits?: SortOrder
+    subscriptionStatus?: SortOrder
+    currentPeriodEnd?: SortOrder
+    capMicrocredits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserWalletSumOrderByAggregateInput = {
+    balanceMicrocredits?: SortOrder
+    capMicrocredits?: SortOrder
+  }
+
+  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type UserWalletScalarRelationFilter = {
+    is?: UserWalletWhereInput
+    isNot?: UserWalletWhereInput
+  }
+
+  export type SubscriptionPaymentCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    paymentProvider?: SortOrder
+    paymentProviderId?: SortOrder
+    amountPaidCents?: SortOrder
+    currency?: SortOrder
+    grantMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SubscriptionPaymentAvgOrderByAggregateInput = {
+    amountPaidCents?: SortOrder
+    grantMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+  }
+
+  export type SubscriptionPaymentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    paymentProvider?: SortOrder
+    paymentProviderId?: SortOrder
+    amountPaidCents?: SortOrder
+    currency?: SortOrder
+    grantMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SubscriptionPaymentMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    paymentProvider?: SortOrder
+    paymentProviderId?: SortOrder
+    amountPaidCents?: SortOrder
+    currency?: SortOrder
+    grantMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SubscriptionPaymentSumOrderByAggregateInput = {
+    amountPaidCents?: SortOrder
+    grantMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+  }
+
+  export type CreditUsageCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    requestId?: SortOrder
+    openrouterGenerationId?: SortOrder
+    modelUsed?: SortOrder
+    activityType?: SortOrder
+    costMicrousd?: SortOrder
+    debitMicrocredits?: SortOrder
+    tokenUsage?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CreditUsageAvgOrderByAggregateInput = {
+    costMicrousd?: SortOrder
+    debitMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+  }
+
+  export type CreditUsageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    requestId?: SortOrder
+    openrouterGenerationId?: SortOrder
+    modelUsed?: SortOrder
+    activityType?: SortOrder
+    costMicrousd?: SortOrder
+    debitMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CreditUsageMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    requestId?: SortOrder
+    openrouterGenerationId?: SortOrder
+    modelUsed?: SortOrder
+    activityType?: SortOrder
+    costMicrousd?: SortOrder
+    debitMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CreditUsageSumOrderByAggregateInput = {
+    costMicrousd?: SortOrder
+    debitMicrocredits?: SortOrder
+    balanceBeforeMicrocredits?: SortOrder
+    balanceAfterMicrocredits?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9550,11 +14244,23 @@ export namespace Prisma {
     connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
   }
 
+  export type UserWalletCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserWalletCreateWithoutUserInput, UserWalletUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutUserInput
+    connect?: UserWalletWhereUniqueInput
+  }
+
   export type ProjectUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
     createMany?: ProjectCreateManyUserInputEnvelope
     connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type UserWalletUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserWalletCreateWithoutUserInput, UserWalletUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutUserInput
+    connect?: UserWalletWhereUniqueInput
   }
 
   export type ProjectUpdateManyWithoutUserNestedInput = {
@@ -9571,6 +14277,16 @@ export namespace Prisma {
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
+  export type UserWalletUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserWalletCreateWithoutUserInput, UserWalletUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutUserInput
+    upsert?: UserWalletUpsertWithoutUserInput
+    disconnect?: UserWalletWhereInput | boolean
+    delete?: UserWalletWhereInput | boolean
+    connect?: UserWalletWhereUniqueInput
+    update?: XOR<XOR<UserWalletUpdateToOneWithWhereWithoutUserInput, UserWalletUpdateWithoutUserInput>, UserWalletUncheckedUpdateWithoutUserInput>
+  }
+
   export type ProjectUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
@@ -9583,6 +14299,16 @@ export namespace Prisma {
     update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type UserWalletUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserWalletCreateWithoutUserInput, UserWalletUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutUserInput
+    upsert?: UserWalletUpsertWithoutUserInput
+    disconnect?: UserWalletWhereInput | boolean
+    delete?: UserWalletWhereInput | boolean
+    connect?: UserWalletWhereUniqueInput
+    update?: XOR<XOR<UserWalletUpdateToOneWithWhereWithoutUserInput, UserWalletUpdateWithoutUserInput>, UserWalletUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutProjectsInput = {
@@ -9821,6 +14547,144 @@ export namespace Prisma {
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutMessagesInput, ProjectUpdateWithoutMessagesInput>, ProjectUncheckedUpdateWithoutMessagesInput>
   }
 
+  export type UserCreateNestedOneWithoutWalletInput = {
+    create?: XOR<UserCreateWithoutWalletInput, UserUncheckedCreateWithoutWalletInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWalletInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SubscriptionPaymentCreateNestedManyWithoutWalletInput = {
+    create?: XOR<SubscriptionPaymentCreateWithoutWalletInput, SubscriptionPaymentUncheckedCreateWithoutWalletInput> | SubscriptionPaymentCreateWithoutWalletInput[] | SubscriptionPaymentUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: SubscriptionPaymentCreateOrConnectWithoutWalletInput | SubscriptionPaymentCreateOrConnectWithoutWalletInput[]
+    createMany?: SubscriptionPaymentCreateManyWalletInputEnvelope
+    connect?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+  }
+
+  export type CreditUsageCreateNestedManyWithoutWalletInput = {
+    create?: XOR<CreditUsageCreateWithoutWalletInput, CreditUsageUncheckedCreateWithoutWalletInput> | CreditUsageCreateWithoutWalletInput[] | CreditUsageUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: CreditUsageCreateOrConnectWithoutWalletInput | CreditUsageCreateOrConnectWithoutWalletInput[]
+    createMany?: CreditUsageCreateManyWalletInputEnvelope
+    connect?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+  }
+
+  export type SubscriptionPaymentUncheckedCreateNestedManyWithoutWalletInput = {
+    create?: XOR<SubscriptionPaymentCreateWithoutWalletInput, SubscriptionPaymentUncheckedCreateWithoutWalletInput> | SubscriptionPaymentCreateWithoutWalletInput[] | SubscriptionPaymentUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: SubscriptionPaymentCreateOrConnectWithoutWalletInput | SubscriptionPaymentCreateOrConnectWithoutWalletInput[]
+    createMany?: SubscriptionPaymentCreateManyWalletInputEnvelope
+    connect?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+  }
+
+  export type CreditUsageUncheckedCreateNestedManyWithoutWalletInput = {
+    create?: XOR<CreditUsageCreateWithoutWalletInput, CreditUsageUncheckedCreateWithoutWalletInput> | CreditUsageCreateWithoutWalletInput[] | CreditUsageUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: CreditUsageCreateOrConnectWithoutWalletInput | CreditUsageCreateOrConnectWithoutWalletInput[]
+    createMany?: CreditUsageCreateManyWalletInputEnvelope
+    connect?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+  }
+
+  export type BigIntFieldUpdateOperationsInput = {
+    set?: bigint | number
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutWalletNestedInput = {
+    create?: XOR<UserCreateWithoutWalletInput, UserUncheckedCreateWithoutWalletInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWalletInput
+    upsert?: UserUpsertWithoutWalletInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWalletInput, UserUpdateWithoutWalletInput>, UserUncheckedUpdateWithoutWalletInput>
+  }
+
+  export type SubscriptionPaymentUpdateManyWithoutWalletNestedInput = {
+    create?: XOR<SubscriptionPaymentCreateWithoutWalletInput, SubscriptionPaymentUncheckedCreateWithoutWalletInput> | SubscriptionPaymentCreateWithoutWalletInput[] | SubscriptionPaymentUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: SubscriptionPaymentCreateOrConnectWithoutWalletInput | SubscriptionPaymentCreateOrConnectWithoutWalletInput[]
+    upsert?: SubscriptionPaymentUpsertWithWhereUniqueWithoutWalletInput | SubscriptionPaymentUpsertWithWhereUniqueWithoutWalletInput[]
+    createMany?: SubscriptionPaymentCreateManyWalletInputEnvelope
+    set?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    disconnect?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    delete?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    connect?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    update?: SubscriptionPaymentUpdateWithWhereUniqueWithoutWalletInput | SubscriptionPaymentUpdateWithWhereUniqueWithoutWalletInput[]
+    updateMany?: SubscriptionPaymentUpdateManyWithWhereWithoutWalletInput | SubscriptionPaymentUpdateManyWithWhereWithoutWalletInput[]
+    deleteMany?: SubscriptionPaymentScalarWhereInput | SubscriptionPaymentScalarWhereInput[]
+  }
+
+  export type CreditUsageUpdateManyWithoutWalletNestedInput = {
+    create?: XOR<CreditUsageCreateWithoutWalletInput, CreditUsageUncheckedCreateWithoutWalletInput> | CreditUsageCreateWithoutWalletInput[] | CreditUsageUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: CreditUsageCreateOrConnectWithoutWalletInput | CreditUsageCreateOrConnectWithoutWalletInput[]
+    upsert?: CreditUsageUpsertWithWhereUniqueWithoutWalletInput | CreditUsageUpsertWithWhereUniqueWithoutWalletInput[]
+    createMany?: CreditUsageCreateManyWalletInputEnvelope
+    set?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    disconnect?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    delete?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    connect?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    update?: CreditUsageUpdateWithWhereUniqueWithoutWalletInput | CreditUsageUpdateWithWhereUniqueWithoutWalletInput[]
+    updateMany?: CreditUsageUpdateManyWithWhereWithoutWalletInput | CreditUsageUpdateManyWithWhereWithoutWalletInput[]
+    deleteMany?: CreditUsageScalarWhereInput | CreditUsageScalarWhereInput[]
+  }
+
+  export type SubscriptionPaymentUncheckedUpdateManyWithoutWalletNestedInput = {
+    create?: XOR<SubscriptionPaymentCreateWithoutWalletInput, SubscriptionPaymentUncheckedCreateWithoutWalletInput> | SubscriptionPaymentCreateWithoutWalletInput[] | SubscriptionPaymentUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: SubscriptionPaymentCreateOrConnectWithoutWalletInput | SubscriptionPaymentCreateOrConnectWithoutWalletInput[]
+    upsert?: SubscriptionPaymentUpsertWithWhereUniqueWithoutWalletInput | SubscriptionPaymentUpsertWithWhereUniqueWithoutWalletInput[]
+    createMany?: SubscriptionPaymentCreateManyWalletInputEnvelope
+    set?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    disconnect?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    delete?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    connect?: SubscriptionPaymentWhereUniqueInput | SubscriptionPaymentWhereUniqueInput[]
+    update?: SubscriptionPaymentUpdateWithWhereUniqueWithoutWalletInput | SubscriptionPaymentUpdateWithWhereUniqueWithoutWalletInput[]
+    updateMany?: SubscriptionPaymentUpdateManyWithWhereWithoutWalletInput | SubscriptionPaymentUpdateManyWithWhereWithoutWalletInput[]
+    deleteMany?: SubscriptionPaymentScalarWhereInput | SubscriptionPaymentScalarWhereInput[]
+  }
+
+  export type CreditUsageUncheckedUpdateManyWithoutWalletNestedInput = {
+    create?: XOR<CreditUsageCreateWithoutWalletInput, CreditUsageUncheckedCreateWithoutWalletInput> | CreditUsageCreateWithoutWalletInput[] | CreditUsageUncheckedCreateWithoutWalletInput[]
+    connectOrCreate?: CreditUsageCreateOrConnectWithoutWalletInput | CreditUsageCreateOrConnectWithoutWalletInput[]
+    upsert?: CreditUsageUpsertWithWhereUniqueWithoutWalletInput | CreditUsageUpsertWithWhereUniqueWithoutWalletInput[]
+    createMany?: CreditUsageCreateManyWalletInputEnvelope
+    set?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    disconnect?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    delete?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    connect?: CreditUsageWhereUniqueInput | CreditUsageWhereUniqueInput[]
+    update?: CreditUsageUpdateWithWhereUniqueWithoutWalletInput | CreditUsageUpdateWithWhereUniqueWithoutWalletInput[]
+    updateMany?: CreditUsageUpdateManyWithWhereWithoutWalletInput | CreditUsageUpdateManyWithWhereWithoutWalletInput[]
+    deleteMany?: CreditUsageScalarWhereInput | CreditUsageScalarWhereInput[]
+  }
+
+  export type UserWalletCreateNestedOneWithoutSubscriptionPaymentsInput = {
+    create?: XOR<UserWalletCreateWithoutSubscriptionPaymentsInput, UserWalletUncheckedCreateWithoutSubscriptionPaymentsInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutSubscriptionPaymentsInput
+    connect?: UserWalletWhereUniqueInput
+  }
+
+  export type UserWalletUpdateOneRequiredWithoutSubscriptionPaymentsNestedInput = {
+    create?: XOR<UserWalletCreateWithoutSubscriptionPaymentsInput, UserWalletUncheckedCreateWithoutSubscriptionPaymentsInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutSubscriptionPaymentsInput
+    upsert?: UserWalletUpsertWithoutSubscriptionPaymentsInput
+    connect?: UserWalletWhereUniqueInput
+    update?: XOR<XOR<UserWalletUpdateToOneWithWhereWithoutSubscriptionPaymentsInput, UserWalletUpdateWithoutSubscriptionPaymentsInput>, UserWalletUncheckedUpdateWithoutSubscriptionPaymentsInput>
+  }
+
+  export type UserWalletCreateNestedOneWithoutCreditUsageInput = {
+    create?: XOR<UserWalletCreateWithoutCreditUsageInput, UserWalletUncheckedCreateWithoutCreditUsageInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutCreditUsageInput
+    connect?: UserWalletWhereUniqueInput
+  }
+
+  export type UserWalletUpdateOneRequiredWithoutCreditUsageNestedInput = {
+    create?: XOR<UserWalletCreateWithoutCreditUsageInput, UserWalletUncheckedCreateWithoutCreditUsageInput>
+    connectOrCreate?: UserWalletCreateOrConnectWithoutCreditUsageInput
+    upsert?: UserWalletUpsertWithoutCreditUsageInput
+    connect?: UserWalletWhereUniqueInput
+    update?: XOR<XOR<UserWalletUpdateToOneWithWhereWithoutCreditUsageInput, UserWalletUpdateWithoutCreditUsageInput>, UserWalletUncheckedUpdateWithoutCreditUsageInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -10030,6 +14894,58 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type ProjectCreateWithoutUserInput = {
     id?: string
     name: string
@@ -10060,6 +14976,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserWalletCreateWithoutUserInput = {
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subscriptionPayments?: SubscriptionPaymentCreateNestedManyWithoutWalletInput
+    creditUsage?: CreditUsageCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletUncheckedCreateWithoutUserInput = {
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subscriptionPayments?: SubscriptionPaymentUncheckedCreateNestedManyWithoutWalletInput
+    creditUsage?: CreditUsageUncheckedCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletCreateOrConnectWithoutUserInput = {
+    where: UserWalletWhereUniqueInput
+    create: XOR<UserWalletCreateWithoutUserInput, UserWalletUncheckedCreateWithoutUserInput>
+  }
+
   export type ProjectUpsertWithWhereUniqueWithoutUserInput = {
     where: ProjectWhereUniqueInput
     update: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
@@ -10087,6 +15030,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Project"> | Date | string
   }
 
+  export type UserWalletUpsertWithoutUserInput = {
+    update: XOR<UserWalletUpdateWithoutUserInput, UserWalletUncheckedUpdateWithoutUserInput>
+    create: XOR<UserWalletCreateWithoutUserInput, UserWalletUncheckedCreateWithoutUserInput>
+    where?: UserWalletWhereInput
+  }
+
+  export type UserWalletUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserWalletWhereInput
+    data: XOR<UserWalletUpdateWithoutUserInput, UserWalletUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserWalletUpdateWithoutUserInput = {
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptionPayments?: SubscriptionPaymentUpdateManyWithoutWalletNestedInput
+    creditUsage?: CreditUsageUpdateManyWithoutWalletNestedInput
+  }
+
+  export type UserWalletUncheckedUpdateWithoutUserInput = {
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptionPayments?: SubscriptionPaymentUncheckedUpdateManyWithoutWalletNestedInput
+    creditUsage?: CreditUsageUncheckedUpdateManyWithoutWalletNestedInput
+  }
+
   export type UserCreateWithoutProjectsInput = {
     id: string
     email: string
@@ -10094,6 +15070,7 @@ export namespace Prisma {
     photoURL?: string | null
     createdAt: Date | string
     updatedAt?: Date | string
+    wallet?: UserWalletCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectsInput = {
@@ -10103,6 +15080,7 @@ export namespace Prisma {
     photoURL?: string | null
     createdAt: Date | string
     updatedAt?: Date | string
+    wallet?: UserWalletUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectsInput = {
@@ -10211,6 +15189,7 @@ export namespace Prisma {
     photoURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wallet?: UserWalletUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectsInput = {
@@ -10220,6 +15199,7 @@ export namespace Prisma {
     photoURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wallet?: UserWalletUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ProjectMemoryUpsertWithoutProjectInput = {
@@ -10578,6 +15558,320 @@ export namespace Prisma {
     threads?: ThreadUncheckedUpdateManyWithoutProjectNestedInput
   }
 
+  export type UserCreateWithoutWalletInput = {
+    id: string
+    email: string
+    name?: string | null
+    photoURL?: string | null
+    createdAt: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutWalletInput = {
+    id: string
+    email: string
+    name?: string | null
+    photoURL?: string | null
+    createdAt: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutWalletInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutWalletInput, UserUncheckedCreateWithoutWalletInput>
+  }
+
+  export type SubscriptionPaymentCreateWithoutWalletInput = {
+    id?: string
+    paymentProvider: string
+    paymentProviderId: string
+    amountPaidCents: number
+    currency?: string
+    grantMicrocredits: bigint | number
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type SubscriptionPaymentUncheckedCreateWithoutWalletInput = {
+    id?: string
+    paymentProvider: string
+    paymentProviderId: string
+    amountPaidCents: number
+    currency?: string
+    grantMicrocredits: bigint | number
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type SubscriptionPaymentCreateOrConnectWithoutWalletInput = {
+    where: SubscriptionPaymentWhereUniqueInput
+    create: XOR<SubscriptionPaymentCreateWithoutWalletInput, SubscriptionPaymentUncheckedCreateWithoutWalletInput>
+  }
+
+  export type SubscriptionPaymentCreateManyWalletInputEnvelope = {
+    data: SubscriptionPaymentCreateManyWalletInput | SubscriptionPaymentCreateManyWalletInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CreditUsageCreateWithoutWalletInput = {
+    id?: string
+    requestId: string
+    openrouterGenerationId?: string | null
+    modelUsed?: string | null
+    activityType: string
+    costMicrousd: bigint | number
+    debitMicrocredits: bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type CreditUsageUncheckedCreateWithoutWalletInput = {
+    id?: string
+    requestId: string
+    openrouterGenerationId?: string | null
+    modelUsed?: string | null
+    activityType: string
+    costMicrousd: bigint | number
+    debitMicrocredits: bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type CreditUsageCreateOrConnectWithoutWalletInput = {
+    where: CreditUsageWhereUniqueInput
+    create: XOR<CreditUsageCreateWithoutWalletInput, CreditUsageUncheckedCreateWithoutWalletInput>
+  }
+
+  export type CreditUsageCreateManyWalletInputEnvelope = {
+    data: CreditUsageCreateManyWalletInput | CreditUsageCreateManyWalletInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutWalletInput = {
+    update: XOR<UserUpdateWithoutWalletInput, UserUncheckedUpdateWithoutWalletInput>
+    create: XOR<UserCreateWithoutWalletInput, UserUncheckedCreateWithoutWalletInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutWalletInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutWalletInput, UserUncheckedUpdateWithoutWalletInput>
+  }
+
+  export type UserUpdateWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type SubscriptionPaymentUpsertWithWhereUniqueWithoutWalletInput = {
+    where: SubscriptionPaymentWhereUniqueInput
+    update: XOR<SubscriptionPaymentUpdateWithoutWalletInput, SubscriptionPaymentUncheckedUpdateWithoutWalletInput>
+    create: XOR<SubscriptionPaymentCreateWithoutWalletInput, SubscriptionPaymentUncheckedCreateWithoutWalletInput>
+  }
+
+  export type SubscriptionPaymentUpdateWithWhereUniqueWithoutWalletInput = {
+    where: SubscriptionPaymentWhereUniqueInput
+    data: XOR<SubscriptionPaymentUpdateWithoutWalletInput, SubscriptionPaymentUncheckedUpdateWithoutWalletInput>
+  }
+
+  export type SubscriptionPaymentUpdateManyWithWhereWithoutWalletInput = {
+    where: SubscriptionPaymentScalarWhereInput
+    data: XOR<SubscriptionPaymentUpdateManyMutationInput, SubscriptionPaymentUncheckedUpdateManyWithoutWalletInput>
+  }
+
+  export type SubscriptionPaymentScalarWhereInput = {
+    AND?: SubscriptionPaymentScalarWhereInput | SubscriptionPaymentScalarWhereInput[]
+    OR?: SubscriptionPaymentScalarWhereInput[]
+    NOT?: SubscriptionPaymentScalarWhereInput | SubscriptionPaymentScalarWhereInput[]
+    id?: StringFilter<"SubscriptionPayment"> | string
+    userId?: StringFilter<"SubscriptionPayment"> | string
+    paymentProvider?: StringFilter<"SubscriptionPayment"> | string
+    paymentProviderId?: StringFilter<"SubscriptionPayment"> | string
+    amountPaidCents?: IntFilter<"SubscriptionPayment"> | number
+    currency?: StringFilter<"SubscriptionPayment"> | string
+    grantMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    balanceBeforeMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    balanceAfterMicrocredits?: BigIntFilter<"SubscriptionPayment"> | bigint | number
+    createdAt?: DateTimeFilter<"SubscriptionPayment"> | Date | string
+  }
+
+  export type CreditUsageUpsertWithWhereUniqueWithoutWalletInput = {
+    where: CreditUsageWhereUniqueInput
+    update: XOR<CreditUsageUpdateWithoutWalletInput, CreditUsageUncheckedUpdateWithoutWalletInput>
+    create: XOR<CreditUsageCreateWithoutWalletInput, CreditUsageUncheckedCreateWithoutWalletInput>
+  }
+
+  export type CreditUsageUpdateWithWhereUniqueWithoutWalletInput = {
+    where: CreditUsageWhereUniqueInput
+    data: XOR<CreditUsageUpdateWithoutWalletInput, CreditUsageUncheckedUpdateWithoutWalletInput>
+  }
+
+  export type CreditUsageUpdateManyWithWhereWithoutWalletInput = {
+    where: CreditUsageScalarWhereInput
+    data: XOR<CreditUsageUpdateManyMutationInput, CreditUsageUncheckedUpdateManyWithoutWalletInput>
+  }
+
+  export type CreditUsageScalarWhereInput = {
+    AND?: CreditUsageScalarWhereInput | CreditUsageScalarWhereInput[]
+    OR?: CreditUsageScalarWhereInput[]
+    NOT?: CreditUsageScalarWhereInput | CreditUsageScalarWhereInput[]
+    id?: StringFilter<"CreditUsage"> | string
+    userId?: StringFilter<"CreditUsage"> | string
+    requestId?: StringFilter<"CreditUsage"> | string
+    openrouterGenerationId?: StringNullableFilter<"CreditUsage"> | string | null
+    modelUsed?: StringNullableFilter<"CreditUsage"> | string | null
+    activityType?: StringFilter<"CreditUsage"> | string
+    costMicrousd?: BigIntFilter<"CreditUsage"> | bigint | number
+    debitMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    tokenUsage?: JsonNullableFilter<"CreditUsage">
+    balanceBeforeMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    balanceAfterMicrocredits?: BigIntFilter<"CreditUsage"> | bigint | number
+    createdAt?: DateTimeFilter<"CreditUsage"> | Date | string
+  }
+
+  export type UserWalletCreateWithoutSubscriptionPaymentsInput = {
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutWalletInput
+    creditUsage?: CreditUsageCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletUncheckedCreateWithoutSubscriptionPaymentsInput = {
+    userId: string
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creditUsage?: CreditUsageUncheckedCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletCreateOrConnectWithoutSubscriptionPaymentsInput = {
+    where: UserWalletWhereUniqueInput
+    create: XOR<UserWalletCreateWithoutSubscriptionPaymentsInput, UserWalletUncheckedCreateWithoutSubscriptionPaymentsInput>
+  }
+
+  export type UserWalletUpsertWithoutSubscriptionPaymentsInput = {
+    update: XOR<UserWalletUpdateWithoutSubscriptionPaymentsInput, UserWalletUncheckedUpdateWithoutSubscriptionPaymentsInput>
+    create: XOR<UserWalletCreateWithoutSubscriptionPaymentsInput, UserWalletUncheckedCreateWithoutSubscriptionPaymentsInput>
+    where?: UserWalletWhereInput
+  }
+
+  export type UserWalletUpdateToOneWithWhereWithoutSubscriptionPaymentsInput = {
+    where?: UserWalletWhereInput
+    data: XOR<UserWalletUpdateWithoutSubscriptionPaymentsInput, UserWalletUncheckedUpdateWithoutSubscriptionPaymentsInput>
+  }
+
+  export type UserWalletUpdateWithoutSubscriptionPaymentsInput = {
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutWalletNestedInput
+    creditUsage?: CreditUsageUpdateManyWithoutWalletNestedInput
+  }
+
+  export type UserWalletUncheckedUpdateWithoutSubscriptionPaymentsInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creditUsage?: CreditUsageUncheckedUpdateManyWithoutWalletNestedInput
+  }
+
+  export type UserWalletCreateWithoutCreditUsageInput = {
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutWalletInput
+    subscriptionPayments?: SubscriptionPaymentCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletUncheckedCreateWithoutCreditUsageInput = {
+    userId: string
+    balanceMicrocredits?: bigint | number
+    subscriptionStatus?: string
+    currentPeriodEnd?: Date | string | null
+    capMicrocredits?: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subscriptionPayments?: SubscriptionPaymentUncheckedCreateNestedManyWithoutWalletInput
+  }
+
+  export type UserWalletCreateOrConnectWithoutCreditUsageInput = {
+    where: UserWalletWhereUniqueInput
+    create: XOR<UserWalletCreateWithoutCreditUsageInput, UserWalletUncheckedCreateWithoutCreditUsageInput>
+  }
+
+  export type UserWalletUpsertWithoutCreditUsageInput = {
+    update: XOR<UserWalletUpdateWithoutCreditUsageInput, UserWalletUncheckedUpdateWithoutCreditUsageInput>
+    create: XOR<UserWalletCreateWithoutCreditUsageInput, UserWalletUncheckedCreateWithoutCreditUsageInput>
+    where?: UserWalletWhereInput
+  }
+
+  export type UserWalletUpdateToOneWithWhereWithoutCreditUsageInput = {
+    where?: UserWalletWhereInput
+    data: XOR<UserWalletUpdateWithoutCreditUsageInput, UserWalletUncheckedUpdateWithoutCreditUsageInput>
+  }
+
+  export type UserWalletUpdateWithoutCreditUsageInput = {
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutWalletNestedInput
+    subscriptionPayments?: SubscriptionPaymentUpdateManyWithoutWalletNestedInput
+  }
+
+  export type UserWalletUncheckedUpdateWithoutCreditUsageInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    balanceMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    subscriptionStatus?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    capMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subscriptionPayments?: SubscriptionPaymentUncheckedUpdateManyWithoutWalletNestedInput
+  }
+
   export type ProjectCreateManyUserInput = {
     id?: string
     name: string
@@ -10731,6 +16025,110 @@ export namespace Prisma {
     modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
     turnNumber?: IntFieldUpdateOperationsInput | number
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPaymentCreateManyWalletInput = {
+    id?: string
+    paymentProvider: string
+    paymentProviderId: string
+    amountPaidCents: number
+    currency?: string
+    grantMicrocredits: bigint | number
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type CreditUsageCreateManyWalletInput = {
+    id?: string
+    requestId: string
+    openrouterGenerationId?: string | null
+    modelUsed?: string | null
+    activityType: string
+    costMicrousd: bigint | number
+    debitMicrocredits: bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits: bigint | number
+    balanceAfterMicrocredits: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type SubscriptionPaymentUpdateWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    paymentProvider?: StringFieldUpdateOperationsInput | string
+    paymentProviderId?: StringFieldUpdateOperationsInput | string
+    amountPaidCents?: IntFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    grantMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPaymentUncheckedUpdateWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    paymentProvider?: StringFieldUpdateOperationsInput | string
+    paymentProviderId?: StringFieldUpdateOperationsInput | string
+    amountPaidCents?: IntFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    grantMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionPaymentUncheckedUpdateManyWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    paymentProvider?: StringFieldUpdateOperationsInput | string
+    paymentProviderId?: StringFieldUpdateOperationsInput | string
+    amountPaidCents?: IntFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    grantMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CreditUsageUpdateWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    openrouterGenerationId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    activityType?: StringFieldUpdateOperationsInput | string
+    costMicrousd?: BigIntFieldUpdateOperationsInput | bigint | number
+    debitMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CreditUsageUncheckedUpdateWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    openrouterGenerationId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    activityType?: StringFieldUpdateOperationsInput | string
+    costMicrousd?: BigIntFieldUpdateOperationsInput | bigint | number
+    debitMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CreditUsageUncheckedUpdateManyWithoutWalletInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    openrouterGenerationId?: NullableStringFieldUpdateOperationsInput | string | null
+    modelUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    activityType?: StringFieldUpdateOperationsInput | string
+    costMicrousd?: BigIntFieldUpdateOperationsInput | bigint | number
+    debitMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    tokenUsage?: NullableJsonNullValueInput | InputJsonValue
+    balanceBeforeMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
+    balanceAfterMicrocredits?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

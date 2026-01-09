@@ -120,7 +120,7 @@ function useStreamingDebounce<T>(initialValue: T, debounceMs: number = 50) {
 
 export default function Home() {
   const router = useRouter();
-  const { user, isLoading: authLoading } = useAuth();
+  const { user, isLoading: authLoading, getIdToken } = useAuth();
   const { models, apiKey, verdictModel } = useModels();
   const {
     currentProject,
@@ -399,10 +399,26 @@ Please analyze all the responses above and provide:
 
 Be specific and reference which models said what.`;
 
+      // Get ID token for authentication
+      const idToken = await getIdToken();
+      if (!idToken) {
+        console.error("No ID token available for verdict");
+        setCurrentVerdict({
+          content: "",
+          isLoading: false,
+          error: "Authentication required",
+        });
+        flushVerdict();
+        return;
+      }
+
       try {
         const response = await fetch("/api/chat", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${idToken}`,
+          },
           body: JSON.stringify({
             message: verdictPrompt,
             modelId: verdictModel,
@@ -487,6 +503,7 @@ Be specific and reference which models said what.`;
       saveMessage,
       setCurrentVerdict,
       flushVerdict,
+      getIdToken,
     ]
   );
 
@@ -619,12 +636,22 @@ Be specific and reference which models said what.`;
           ? convertAttachmentsForAPI(queryAttachments)
           : undefined;
 
+      // Get ID token for authentication
+      const idToken = await getIdToken();
+      if (!idToken) {
+        console.error("No ID token available");
+        return;
+      }
+
       // Fire off all requests
       models.forEach(async (model) => {
         try {
           const response = await fetch("/api/chat", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${idToken}`,
+            },
             body: JSON.stringify({
               message: messageWithContext,
               modelId: model.id,
@@ -736,6 +763,7 @@ Be specific and reference which models said what.`;
       resetResponses,
       resetVerdict,
       flushResponses,
+      getIdToken,
     ]
   );
 
@@ -829,7 +857,7 @@ Be specific and reference which models said what.`;
 
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center max-w-md">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 rounded-2xl bg-linear-to-b from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-6">
               <svg
                 className="w-10 h-10 text-white"
                 fill="none"
@@ -886,31 +914,33 @@ Be specific and reference which models said what.`;
                   Select or create a conversation
                 </p>
               </div>
-              <button
-                onClick={() => setIsSettingsOpen(true)}
-                className="flex items-center gap-2 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 rounded-xl text-gray-300 transition-colors border border-gray-700"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setIsSettingsOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 rounded-xl text-gray-300 transition-colors border border-gray-700"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                Settings
-              </button>
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  Settings
+                </button>
+              </div>
             </div>
           </header>
 
@@ -1110,7 +1140,7 @@ Be specific and reference which models said what.`;
                       !apiKey ||
                       models.length === 0
                     }
-                    className="absolute right-3 bottom-3 p-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white rounded-xl transition-all"
+                    className="absolute right-3 bottom-3 p-2.5 bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white rounded-xl transition-all"
                     title="Compare (Enter)"
                   >
                     <svg

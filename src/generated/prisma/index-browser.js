@@ -178,6 +178,44 @@ exports.Prisma.MessageScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.UserWalletScalarFieldEnum = {
+  userId: 'userId',
+  balanceMicrocredits: 'balanceMicrocredits',
+  subscriptionStatus: 'subscriptionStatus',
+  currentPeriodEnd: 'currentPeriodEnd',
+  capMicrocredits: 'capMicrocredits',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SubscriptionPaymentScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  paymentProvider: 'paymentProvider',
+  paymentProviderId: 'paymentProviderId',
+  amountPaidCents: 'amountPaidCents',
+  currency: 'currency',
+  grantMicrocredits: 'grantMicrocredits',
+  balanceBeforeMicrocredits: 'balanceBeforeMicrocredits',
+  balanceAfterMicrocredits: 'balanceAfterMicrocredits',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CreditUsageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  requestId: 'requestId',
+  openrouterGenerationId: 'openrouterGenerationId',
+  modelUsed: 'modelUsed',
+  activityType: 'activityType',
+  costMicrousd: 'costMicrousd',
+  debitMicrocredits: 'debitMicrocredits',
+  tokenUsage: 'tokenUsage',
+  balanceBeforeMicrocredits: 'balanceBeforeMicrocredits',
+  balanceAfterMicrocredits: 'balanceAfterMicrocredits',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -215,7 +253,10 @@ exports.Prisma.ModelName = {
   Project: 'Project',
   ProjectMemory: 'ProjectMemory',
   Thread: 'Thread',
-  Message: 'Message'
+  Message: 'Message',
+  UserWallet: 'UserWallet',
+  SubscriptionPayment: 'SubscriptionPayment',
+  CreditUsage: 'CreditUsage'
 };
 
 /**
