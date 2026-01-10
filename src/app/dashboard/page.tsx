@@ -25,6 +25,7 @@ import NewThreadModal, { ThreadMode } from "@/components/NewThreadModal";
 import FileUpload from "@/components/FileUpload";
 import { VirtualizedConversation } from "@/components/VirtualizedConversation";
 import CreditsDisplay from "@/components/CreditsDisplay";
+import ConfirmDialog from "@/components/ConfirmDialog";
 import {
   reconstructMultiAskHistory,
   Message,
@@ -149,6 +150,17 @@ function ModernSidebar({
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(
     new Set(currentProject ? [currentProject.id] : [])
   );
+  const [confirmDialog, setConfirmDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {},
+  });
 
   const filteredThreads = threads.filter((t) =>
     t.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -163,6 +175,30 @@ function ModernSidebar({
         newSet.add(projectId);
       }
       return newSet;
+    });
+  };
+
+  const handleDeleteProject = (projectId: string, projectName: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Delete Project",
+      message: `Are you sure you want to delete "${projectName}" and all its chats? This action cannot be undone.`,
+      onConfirm: () => {
+        deleteProject(projectId);
+        setConfirmDialog({ ...confirmDialog, isOpen: false });
+      },
+    });
+  };
+
+  const handleDeleteThread = (threadId: string, threadTitle: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Delete Chat",
+      message: `Are you sure you want to delete "${threadTitle}"? This action cannot be undone.`,
+      onConfirm: () => {
+        deleteThread(threadId);
+        setConfirmDialog({ ...confirmDialog, isOpen: false });
+      },
     });
   };
 
@@ -239,34 +275,37 @@ function ModernSidebar({
       )}
 
       {/* Quick Actions */}
-      <div
-        className={`p-3 border-b border-[rgba(255,255,255,0.06)] ${
-          isCollapsed ? "flex flex-col items-center gap-2" : "flex gap-2"
-        }`}
-      >
-        <button
-          onClick={() => onNewThread("multiask")}
-          className={`flex items-center justify-center gap-2 bg-[#5BF731] hover:bg-[#4de028] text-[#050505] font-semibold rounded-xl transition-all ${
-            isCollapsed ? "p-3" : "flex-1 px-4 py-2.5"
+      {currentProject ? (
+        // Show "New Chat" only when a project is selected
+        <div
+          className={`p-3 border-b border-[rgba(255,255,255,0.06)] ${
+            isCollapsed ? "flex flex-col items-center gap-2" : "flex gap-2"
           }`}
-          title="New Conversation"
         >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <button
+            onClick={() => onNewThread("multiask")}
+            className={`flex items-center justify-center gap-2 bg-[#5BF731] hover:bg-[#4de028] text-[#050505] font-semibold rounded-xl transition-all ${
+              isCollapsed ? "p-3" : "flex-1 px-4 py-2.5"
+            }`}
+            title="New Chat"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          {!isCollapsed && <span className="text-sm">New Chat</span>}
-        </button>
-      </div>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            {!isCollapsed && <span className="text-sm">New Chat</span>}
+          </button>
+        </div>
+      ) : null}
 
       {/* Search - Expanded only */}
       {!isCollapsed && (
@@ -385,13 +424,7 @@ function ModernSidebar({
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (
-                            confirm(
-                              `Delete project "${project.name}" and all its chats?`
-                            )
-                          ) {
-                            deleteProject(project.id);
-                          }
+                          handleDeleteProject(project.id, project.name);
                         }}
                         className="opacity-0 group-hover:opacity-100 p-1.5 mr-2 rounded-lg hover:bg-[rgba(247,49,76,0.15)] text-[rgba(255,255,255,0.4)] hover:text-[#F7314C] transition-all"
                         title="Delete project"
@@ -498,11 +531,7 @@ function ModernSidebar({
                               <button
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  if (
-                                    confirm(`Delete chat "${thread.title}"?`)
-                                  ) {
-                                    deleteThread(thread.id);
-                                  }
+                                  handleDeleteThread(thread.id, thread.title);
                                 }}
                                 className="opacity-0 group-hover:opacity-100 p-1 mr-1 rounded hover:bg-[rgba(247,49,76,0.15)] text-[rgba(255,255,255,0.4)] hover:text-[#F7314C] transition-all"
                                 title="Delete chat"
@@ -633,6 +662,18 @@ function ModernSidebar({
           </button>
         )}
       </div>
+
+      {/* Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={confirmDialog.isOpen}
+        title={confirmDialog.title}
+        message={confirmDialog.message}
+        confirmText="Delete"
+        cancelText="Cancel"
+        variant="danger"
+        onConfirm={confirmDialog.onConfirm}
+        onCancel={() => setConfirmDialog({ ...confirmDialog, isOpen: false })}
+      />
     </aside>
   );
 }
