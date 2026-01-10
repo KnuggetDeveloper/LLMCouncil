@@ -25,7 +25,6 @@ type Attachment = ImageAttachment | PDFAttachment;
 interface ChatRequest {
   message: string;
   modelId: string;
-  apiKey: string;
   attachments?: Attachment[];
   activityType?: string;
 }
@@ -113,15 +112,23 @@ export async function POST(request: NextRequest) {
     const {
       message,
       modelId,
-      apiKey,
       attachments,
       activityType = "chat",
     } = (await request.json()) as ChatRequest;
 
-    if (!message || !modelId || !apiKey) {
+    if (!message || !modelId) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
+      );
+    }
+
+    // Use backend OpenRouter API key
+    const apiKey = process.env.OPENROUTER_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "OpenRouter API key not configured" },
+        { status: 500 }
       );
     }
 
@@ -261,7 +268,7 @@ export async function POST(request: NextRequest) {
               `https://openrouter.ai/api/v1/generation?id=${finalGenerationId}`,
               {
                 headers: {
-                  Authorization: `Bearer ${apiKey}`,
+                  Authorization: `Bearer ${process.env.OPENROUTER_KEY}`,
                 },
               }
             );

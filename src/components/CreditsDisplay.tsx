@@ -22,6 +22,9 @@ export default function CreditsDisplay({ isCollapsed = false }: CreditsDisplayPr
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let retryCount = 0;
+    const maxRetries = 3;
+
     const fetchCredits = async () => {
       if (!user) {
         setLoading(false);
@@ -44,14 +47,29 @@ export default function CreditsDisplay({ isCollapsed = false }: CreditsDisplayPr
         if (response.ok) {
           const data = await response.json();
           setCreditsData(data);
+          setError(null);
+          retryCount = 0; // Reset retry count on success
+        } else if (response.status === 404 && retryCount < maxRetries) {
+          // Wallet might not be created yet for new users, retry
+          retryCount++;
+          console.log(`Credits not found, retrying (${retryCount}/${maxRetries})...`);
+          setTimeout(fetchCredits, 1000 * retryCount); // Exponential backoff
+          return; // Don't set loading to false yet
         } else {
           setError("Failed to fetch credits");
         }
       } catch (err) {
         console.error("Error fetching credits:", err);
+        if (retryCount < maxRetries) {
+          retryCount++;
+          setTimeout(fetchCredits, 1000 * retryCount);
+          return;
+        }
         setError("Failed to fetch credits");
       } finally {
-        setLoading(false);
+        if (retryCount === 0 || retryCount >= maxRetries) {
+          setLoading(false);
+        }
       }
     };
 

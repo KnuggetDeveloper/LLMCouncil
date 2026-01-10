@@ -433,7 +433,7 @@ export default function CritiqueChain({
   onSaveMessage,
   threadId,
 }: CritiqueChainProps) {
-  const { apiKey, primaryModel, critiqueModels, reviewerModel } = useModels();
+  const { primaryModel, critiqueModels, reviewerModel } = useModels();
   const [question, setQuestion] = useState("");
   const [attachments, setAttachments] = useState<FileAttachment[]>([]);
   const [currentStep, setCurrentStep] = useState<WorkflowStep>("idle");
@@ -621,7 +621,6 @@ export default function CritiqueChain({
           body: JSON.stringify({
             message: prompt,
             modelId,
-            apiKey,
             attachments: apiAttachments,
           }),
         });
@@ -668,7 +667,7 @@ export default function CritiqueChain({
         onError(error instanceof Error ? error.message : "Unknown error");
       }
     },
-    [apiKey]
+    []
   );
 
   const runCritiques = useCallback(
@@ -875,7 +874,7 @@ Please provide:
       isFollowUp: boolean = false,
       queryAttachments: FileAttachment[] = []
     ) => {
-      if (!queryQuestion.trim() || !apiKey || !primaryModel) return;
+      if (!queryQuestion.trim() || !primaryModel) return;
 
       const newTurnNumber = currentTurnNumber + 1;
 
@@ -974,7 +973,6 @@ Please provide:
       );
     },
     [
-      apiKey,
       primaryModel,
       critiqueModels,
       projectContext,
@@ -1045,7 +1043,7 @@ Please provide:
     });
   }, []);
 
-  const isConfigured = apiKey && primaryModel;
+  const isConfigured = primaryModel;
   const isCurrentTurnComplete = currentStep === "complete";
 
   // Calculate visible range for windowing

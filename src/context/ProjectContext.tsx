@@ -42,7 +42,7 @@ interface ProjectContextType {
   selectThread: (thread: Thread | null) => void;
   deleteThread: (threadId: string) => Promise<void>;
   fetchProjectMemory: (projectId: string) => Promise<void>;
-  refreshProjectMemory: (projectId: string, apiKey: string) => Promise<void>;
+  refreshProjectMemory: (projectId: string) => Promise<void>;
 }
 
 const ProjectContext = createContext<ProjectContextType | undefined>(undefined);
@@ -286,13 +286,12 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     }
   }, [getAuthHeaders]);
 
-  const refreshProjectMemory = useCallback(async (projectId: string, apiKey: string) => {
+  const refreshProjectMemory = useCallback(async (projectId: string) => {
     try {
       const headers = await getAuthHeaders();
       const response = await fetch(`/api/projects/${projectId}/memory`, {
         method: "POST",
         headers: { "Content-Type": "application/json", ...headers },
-        body: JSON.stringify({ apiKey }),
       });
       if (response.ok) {
         const data = await response.json();

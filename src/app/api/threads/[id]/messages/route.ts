@@ -32,7 +32,7 @@ export async function POST(
 ) {
   try {
     const { id: threadId } = await params;
-    const { role, content, modelUsed, metadata, apiKey, turnNumber } = await request.json();
+    const { role, content, modelUsed, metadata, turnNumber } = await request.json();
 
     // Get thread to find project ID
     const thread = await prisma.thread.findUnique({
@@ -56,10 +56,8 @@ export async function POST(
       turnNumber
     );
 
-    // If API key provided, try to update memory in background
-    if (apiKey) {
-      contextManager.updateProjectMemory(thread.projectId, apiKey).catch(console.error);
-    }
+    // Update memory in background
+    contextManager.updateProjectMemory(thread.projectId).catch(console.error);
 
     return NextResponse.json({ messageId }, { status: 201 });
   } catch (error) {

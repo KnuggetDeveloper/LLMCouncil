@@ -51,6 +51,10 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Small delay to ensure database transaction fully commits
+    // This prevents race conditions when fetching credits immediately after sync
+    await new Promise(resolve => setTimeout(resolve, 100));
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Sync error:", error);

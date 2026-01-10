@@ -43,10 +43,6 @@ interface ModelsContextType {
   setRedTeamPrompt: (prompt: string) => void;
   blueTeamPrompt: string;
   setBlueTeamPrompt: (prompt: string) => void;
-
-  // Shared
-  apiKey: string;
-  setApiKey: (key: string) => void;
 }
 
 const ModelsContext = createContext<ModelsContextType | undefined>(undefined);
@@ -93,8 +89,6 @@ export function ModelsProvider({ children }: { children: ReactNode }) {
     DEFAULT_BLUE_TEAM_PROMPT
   );
 
-  // Shared
-  const [apiKey, setApiKey] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Fetch available models from the database
@@ -126,9 +120,6 @@ export function ModelsProvider({ children }: { children: ReactNode }) {
         const parsed = JSON.parse(stored);
         if (parsed.models) {
           setModels(parsed.models);
-        }
-        if (parsed.apiKey) {
-          setApiKey(parsed.apiKey);
         }
         if (parsed.verdictModel) {
           setVerdictModel(parsed.verdictModel);
@@ -169,7 +160,6 @@ export function ModelsProvider({ children }: { children: ReactNode }) {
         STORAGE_KEY,
         JSON.stringify({
           models,
-          apiKey,
           verdictModel,
           primaryModel,
           critiqueModels,
@@ -183,7 +173,6 @@ export function ModelsProvider({ children }: { children: ReactNode }) {
     }
   }, [
     models,
-    apiKey,
     verdictModel,
     primaryModel,
     critiqueModels,
@@ -299,8 +288,6 @@ export function ModelsProvider({ children }: { children: ReactNode }) {
         setRedTeamPrompt,
         blueTeamPrompt,
         setBlueTeamPrompt,
-        apiKey,
-        setApiKey,
       }}
     >
       {children}

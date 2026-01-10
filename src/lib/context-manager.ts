@@ -212,10 +212,9 @@ export class ContextManager {
   /**
    * Update project memory by analyzing recent messages
    */
-  async updateProjectMemory(projectId: string, apiKey?: string): Promise<void> {
-    if (!apiKey) {
-      // Try to get from environment or skip
-      console.log("No API key provided for memory update, skipping");
+  async updateProjectMemory(projectId: string): Promise<void> {
+    if (!process.env.OPENROUTER_KEY) {
+      console.error("OpenRouter API key not configured");
       return;
     }
 
@@ -258,6 +257,13 @@ Return ONLY valid JSON with:
 }`;
 
     try {
+      // Use backend OpenRouter API key
+      const apiKey = process.env.OPENROUTER_KEY;
+      if (!apiKey) {
+        console.error("OpenRouter API key not configured");
+        return;
+      }
+
       const response = await fetch(
         "https://openrouter.ai/api/v1/chat/completions",
         {

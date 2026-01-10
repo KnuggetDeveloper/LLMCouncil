@@ -1,7 +1,14 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
-import { 
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from "react";
+import {
   User as FirebaseUser,
   signInWithPopup,
   signOut,
@@ -44,28 +51,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Only run on client side
     if (typeof window === "undefined") {
-      setIsLoading(false);
       return;
     }
 
     const auth = getFirebaseAuth();
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        setUser(formatUser(firebaseUser));
-        
-        // Sync user to our database
+        // Sync user to our database BEFORE setting user state
+        // This ensures wallet with initial credits is created first
         try {
           const idToken = await firebaseUser.getIdToken();
-          await fetch("/api/auth/sync", {
+          const response = await fetch("/api/auth/sync", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${idToken}`,
+              Authorization: `Bearer ${idToken}`,
             },
           });
+
+          if (!response.ok) {
+            console.error("Failed to sync user:", await response.text());
+          }
         } catch (error) {
           console.error("Failed to sync user:", error);
         }
+
+        // Set user AFTER sync completes
+        setUser(formatUser(firebaseUser));
       } else {
         setUser(null);
       }
@@ -105,7 +117,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, signInWithGoogle, logout, getIdToken }}>
+    <AuthContext.Provider
+      value={{ user, isLoading, signInWithGoogle, logout, getIdToken }}
+    >
       {children}
     </AuthContext.Provider>
   );

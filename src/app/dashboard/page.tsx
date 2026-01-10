@@ -681,7 +681,7 @@ function ModernSidebar({
 export default function Dashboard() {
   const router = useRouter();
   const { user, isLoading: authLoading, getIdToken } = useAuth();
-  const { models, apiKey, verdictModel } = useModels();
+  const { models, verdictModel } = useModels();
   const {
     currentProject,
     currentThread,
@@ -902,7 +902,6 @@ export default function Dashboard() {
             content,
             modelUsed,
             metadata,
-            apiKey,
             turnNumber,
           }),
         });
@@ -910,7 +909,7 @@ export default function Dashboard() {
         console.error("Failed to save message:", error);
       }
     },
-    [currentThread, apiKey]
+    [currentThread]
   );
 
   // Generate verdict from all responses
@@ -921,7 +920,7 @@ export default function Dashboard() {
       isFollowUp: boolean = false,
       turnNum: number
     ) => {
-      if (!verdictModel || !apiKey) return;
+      if (!verdictModel) return;
 
       setCurrentVerdict({ content: "", isLoading: true });
 
@@ -976,7 +975,6 @@ Be specific and reference which models said what.`;
           body: JSON.stringify({
             message: verdictPrompt,
             modelId: verdictModel,
-            apiKey,
           }),
         });
 
@@ -1050,7 +1048,6 @@ Be specific and reference which models said what.`;
     },
     [
       verdictModel,
-      apiKey,
       projectContext,
       conversationContext,
       currentProject,
@@ -1102,7 +1099,7 @@ Be specific and reference which models said what.`;
       isFollowUp: boolean = false,
       queryAttachments: FileAttachment[] = []
     ) => {
-      if (!queryQuestion.trim() || !apiKey || models.length === 0) return;
+      if (!queryQuestion.trim() || models.length === 0) return;
 
       const newTurnNumber = currentTurnNumber + 1;
 
@@ -1202,7 +1199,6 @@ Be specific and reference which models said what.`;
             body: JSON.stringify({
               message: messageWithContext,
               modelId: model.id,
-              apiKey,
               attachments: apiAttachments,
             }),
           });
@@ -1297,7 +1293,6 @@ Be specific and reference which models said what.`;
       setIsSubmitting(false);
     },
     [
-      apiKey,
       models,
       projectContext,
       conversationContext,
@@ -1705,10 +1700,7 @@ Be specific and reference which models said what.`;
                   <button
                     type="submit"
                     disabled={
-                      isSubmitting ||
-                      !question.trim() ||
-                      !apiKey ||
-                      models.length === 0
+                      isSubmitting || !question.trim() || models.length === 0
                     }
                     className="absolute right-3 bottom-3 p-2.5 bg-[#5BF731] hover:bg-[#4de028] disabled:bg-[rgba(255,255,255,0.05)] disabled:cursor-not-allowed text-[#050505] disabled:text-[rgba(255,255,255,0.2)] rounded-xl transition-all"
                     title="Send (Enter)"
@@ -1750,25 +1742,7 @@ Be specific and reference which models said what.`;
                   )}
                 </div>
 
-                {!apiKey && (
-                  <div className="mt-4 p-3 bg-[rgba(247,198,49,0.1)] border border-[rgba(247,198,49,0.2)] rounded-xl text-[#F7C631] text-sm flex items-center gap-2">
-                    <svg
-                      className="w-4 h-4 shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                      />
-                    </svg>
-                    Add your OpenRouter API key in Settings to get started
-                  </div>
-                )}
-                {apiKey && models.length === 0 && (
+                {models.length === 0 && (
                   <div className="mt-4 p-3 bg-[rgba(247,198,49,0.1)] border border-[rgba(247,198,49,0.2)] rounded-xl text-[#F7C631] text-sm flex items-center gap-2">
                     <svg
                       className="w-4 h-4 shrink-0"

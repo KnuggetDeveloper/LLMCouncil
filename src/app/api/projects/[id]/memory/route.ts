@@ -31,13 +31,8 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
-    const { apiKey } = await request.json();
 
-    if (!apiKey) {
-      return NextResponse.json({ error: "API key required" }, { status: 400 });
-    }
-
-    await contextManager.updateProjectMemory(id, apiKey);
+    await contextManager.updateProjectMemory(id);
 
     const memory = await prisma.projectMemory.findUnique({
       where: { projectId: id },

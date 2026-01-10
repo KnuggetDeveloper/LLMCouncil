@@ -428,7 +428,6 @@ export default function PreMortem({
   threadId,
 }: PreMortemProps) {
   const {
-    apiKey,
     redTeamModels,
     blueTeamModels,
     redTeamPrompt,
@@ -557,7 +556,6 @@ export default function PreMortem({
           body: JSON.stringify({
             message: prompt,
             modelId,
-            apiKey,
             attachments: apiAttachments,
           }),
         });
@@ -604,7 +602,7 @@ export default function PreMortem({
         onError(error instanceof Error ? error.message : "Unknown error");
       }
     },
-    [apiKey]
+    []
   );
 
   const runBlueTeam = useCallback(
@@ -732,7 +730,7 @@ Please analyze all the failure points identified above and provide comprehensive
       isFollowUp: boolean = false,
       queryAttachments: FileAttachment[] = []
     ) => {
-      if (!queryQuestion.trim() || !apiKey || redTeamModels.length === 0)
+      if (!queryQuestion.trim() || redTeamModels.length === 0)
         return;
 
       const newTurnNumber = currentTurnNumber + 1;
@@ -829,7 +827,6 @@ Please provide your pre-mortem failure analysis.`;
       });
     },
     [
-      apiKey,
       redTeamModels,
       redTeamPrompt,
       projectContext,
@@ -884,7 +881,7 @@ Please provide your pre-mortem failure analysis.`;
       .join(" ");
   }, []);
 
-  const isConfigured = apiKey && redTeamModels.length > 0;
+  const isConfigured = redTeamModels.length > 0;
   const isCurrentTurnComplete = currentStep === "complete";
 
   if (isLoadingHistory) {

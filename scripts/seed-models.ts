@@ -544,7 +544,7 @@ const MODELS_DATA = [
 ];
 
 async function seedModels() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://llm-council-umber.vercel.app";
   
   console.log("Seeding models to database...");
   console.log(`Using API endpoint: ${baseUrl}/api/models`);
