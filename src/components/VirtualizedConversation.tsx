@@ -52,54 +52,56 @@ const MemoizedMarkdown = React.memo(function MemoizedMarkdown({
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <h1 className="text-2xl font-bold text-white mt-6 mb-4 first:mt-0">
+            <h1 className="text-xl font-bold text-white mt-6 mb-4 first:mt-0 pb-2 border-b border-[rgba(255,255,255,0.1)]">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-xl font-bold text-white mt-5 mb-3 first:mt-0">
+            <h2 className="text-lg font-bold text-white mt-5 mb-3 first:mt-0">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="text-lg font-semibold text-white mt-4 mb-2 first:mt-0">
+            <h3 className="text-base font-semibold text-white mt-4 mb-2 first:mt-0">
               {children}
             </h3>
           ),
           h4: ({ children }) => (
-            <h4 className="text-base font-semibold text-white mt-3 mb-2 first:mt-0">
+            <h4 className="text-sm font-semibold text-white mt-3 mb-2 first:mt-0">
               {children}
             </h4>
           ),
           p: ({ children }) => (
-            <p className="text-gray-200 leading-relaxed mb-4 last:mb-0">
+            <p className="text-[rgba(255,255,255,0.8)] leading-relaxed mb-4 last:mb-0 text-sm">
               {children}
             </p>
           ),
           strong: ({ children }) => (
-            <strong className="font-bold text-white">{children}</strong>
+            <strong className="font-semibold text-white">{children}</strong>
           ),
           em: ({ children }) => (
-            <em className="italic text-gray-300">{children}</em>
+            <em className="italic text-[rgba(255,255,255,0.7)]">{children}</em>
           ),
           ul: ({ children }) => (
-            <ul className="list-disc list-outside ml-5 mb-4 space-y-1.5 text-gray-200">
+            <ul className="list-disc list-outside ml-5 mb-4 space-y-2 text-[rgba(255,255,255,0.8)]">
               {children}
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="list-decimal list-outside ml-5 mb-4 space-y-1.5 text-gray-200">
+            <ol className="list-decimal list-outside ml-5 mb-4 space-y-2 text-[rgba(255,255,255,0.8)]">
               {children}
             </ol>
           ),
           li: ({ children }) => (
-            <li className="text-gray-200 leading-relaxed">{children}</li>
+            <li className="text-[rgba(255,255,255,0.8)] leading-relaxed text-sm pl-1">
+              {children}
+            </li>
           ),
           code: ({ className, children }) => {
             const isInline = !className;
             if (isInline) {
               return (
-                <code className="px-1.5 py-0.5 bg-gray-800 text-pink-400 rounded text-sm font-mono">
+                <code className="px-1.5 py-0.5 bg-[rgba(91,247,49,0.1)] text-[#5BF731] rounded text-[0.85em] font-mono">
                   {children}
                 </code>
               );
@@ -107,12 +109,12 @@ const MemoizedMarkdown = React.memo(function MemoizedMarkdown({
             return <code className="text-sm font-mono">{children}</code>;
           },
           pre: ({ children }) => (
-            <pre className="bg-gray-950 border border-gray-700 rounded-lg p-4 overflow-x-auto mb-4 text-sm">
+            <pre className="bg-[#050505] border border-[rgba(255,255,255,0.08)] rounded-xl p-4 overflow-x-auto mb-4 text-sm">
               {children}
             </pre>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-blue-500 pl-4 py-1 my-4 text-gray-300 italic bg-gray-800/30 rounded-r">
+            <blockquote className="border-l-3 border-[#5BF731] pl-4 py-2 my-4 text-[rgba(255,255,255,0.7)] italic bg-[rgba(91,247,49,0.05)] rounded-r-lg">
               {children}
             </blockquote>
           ),
@@ -121,33 +123,33 @@ const MemoizedMarkdown = React.memo(function MemoizedMarkdown({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 underline underline-offset-2"
+              className="text-[#5BF731] hover:text-[#4de028] underline underline-offset-2 transition-colors"
             >
               {children}
             </a>
           ),
-          hr: () => <hr className="border-gray-700 my-6" />,
+          hr: () => <hr className="border-[rgba(255,255,255,0.1)] my-6" />,
           table: ({ children }) => (
-            <div className="overflow-x-auto mb-4">
-              <table className="min-w-full border border-gray-700 rounded-lg overflow-hidden">
+            <div className="overflow-x-auto mb-4 rounded-xl border border-[rgba(255,255,255,0.08)]">
+              <table className="min-w-full">
                 {children}
               </table>
             </div>
           ),
           thead: ({ children }) => (
-            <thead className="bg-gray-800">{children}</thead>
+            <thead className="bg-[rgba(255,255,255,0.03)]">{children}</thead>
           ),
           tbody: ({ children }) => (
-            <tbody className="divide-y divide-gray-700">{children}</tbody>
+            <tbody className="divide-y divide-[rgba(255,255,255,0.06)]">{children}</tbody>
           ),
           tr: ({ children }) => <tr>{children}</tr>,
           th: ({ children }) => (
-            <th className="px-4 py-2 text-left text-sm font-semibold text-white">
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-4 py-2 text-sm text-gray-300">{children}</td>
+            <td className="px-4 py-3 text-sm text-[rgba(255,255,255,0.7)]">{children}</td>
           ),
         }}
       >
@@ -175,30 +177,28 @@ export const MemoizedResponsePanel = React.memo(
     const provider = modelId.split("/")[0] || "unknown";
 
     return (
-      <div className="flex flex-col h-full bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
-        <div className="flex items-center gap-3 px-4 py-3 bg-gray-800/50 border-b border-gray-700">
-          <div className="flex items-center gap-2 min-w-0 flex-1">
-            <div className="w-2 h-2 rounded-full bg-green-500 shrink-0" />
-            <span className="font-semibold text-white truncate">
+      <div className="flex flex-col h-full bg-[#0a0a0a] rounded-2xl border border-[rgba(255,255,255,0.08)] overflow-hidden hover:border-[rgba(91,247,49,0.2)] transition-colors">
+        <div className="flex items-center gap-3 px-4 py-3 bg-[rgba(255,255,255,0.02)] border-b border-[rgba(255,255,255,0.06)]">
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#5BF731] shrink-0 shadow-[0_0_8px_rgba(91,247,49,0.5)]" />
+            <span className="font-semibold text-white truncate text-sm">
               {modelName}
             </span>
           </div>
-          <span className="text-xs text-gray-500 px-2 py-0.5 bg-gray-700 rounded-full shrink-0">
+          <span className="text-[0.65rem] text-[rgba(255,255,255,0.4)] px-2 py-1 bg-[rgba(255,255,255,0.05)] rounded-lg shrink-0 font-medium">
             {provider}
           </span>
           {isLoading && (
-            <div className="shrink-0">
-              <div className="flex gap-1">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
-              </div>
+            <div className="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-[rgba(91,247,49,0.1)] rounded-lg">
+              <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce [animation-delay:-0.3s]" />
+              <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce [animation-delay:-0.15s]" />
+              <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce" />
             </div>
           )}
         </div>
         <div className="flex-1 p-4 overflow-y-auto">
           {error ? (
-            <div className="flex items-start gap-3 text-red-400">
+            <div className="flex items-start gap-3 text-[#F7314C] bg-[rgba(247,49,76,0.08)] p-3 rounded-xl border border-[rgba(247,49,76,0.2)]">
               <svg
                 className="w-5 h-5 mt-0.5 shrink-0"
                 fill="none"
@@ -217,9 +217,12 @@ export const MemoizedResponsePanel = React.memo(
           ) : content ? (
             <MemoizedMarkdown content={content} />
           ) : isLoading ? (
-            <div className="text-gray-500 text-sm italic">Thinking...</div>
+            <div className="text-[rgba(255,255,255,0.4)] text-sm italic flex items-center gap-2">
+              <div className="w-4 h-4 border-2 border-[#5BF731] border-t-transparent rounded-full animate-spin" />
+              Thinking...
+            </div>
           ) : (
-            <div className="text-gray-600 text-sm italic">
+            <div className="text-[rgba(255,255,255,0.3)] text-sm italic">
               Response will appear here...
             </div>
           )}
@@ -252,12 +255,12 @@ export const MemoizedVerdictPanel = React.memo(
     modelName: string;
   }) {
     return (
-      <div className="bg-linear-to-br from-purple-900/30 to-blue-900/30 rounded-2xl border border-purple-500/30 overflow-hidden">
-        <div className="flex items-center gap-3 px-5 py-4 bg-purple-900/20 border-b border-purple-500/20">
+      <div className="bg-[rgba(91,247,49,0.03)] rounded-2xl border border-[rgba(91,247,49,0.15)] overflow-hidden">
+        <div className="flex items-center gap-3 px-5 py-4 bg-[rgba(91,247,49,0.05)] border-b border-[rgba(91,247,49,0.1)]">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-linear-to-br from-purple-500 to-blue-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-[rgba(91,247,49,0.15)] flex items-center justify-center">
               <svg
-                className="w-5 h-5 text-white"
+                className="w-5 h-5 text-[#5BF731]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -271,25 +274,26 @@ export const MemoizedVerdictPanel = React.memo(
               </svg>
             </div>
             <div>
-              <h3 className="font-bold text-white text-lg">
+              <h3 className="font-bold text-white text-base">
                 Verdict & Consensus
               </h3>
-              <p className="text-xs text-purple-300">Analyzed by {modelName}</p>
+              <p className="text-xs text-[rgba(255,255,255,0.5)]">
+                Analyzed by <span className="text-[#5BF731]">{modelName}</span>
+              </p>
             </div>
           </div>
           {isLoading && (
-            <div className="ml-auto">
-              <div className="flex gap-1">
-                <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" />
-              </div>
+            <div className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-[rgba(91,247,49,0.1)] rounded-lg">
+              <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce [animation-delay:-0.3s]" />
+              <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce [animation-delay:-0.15s]" />
+              <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce" />
+              <span className="text-xs text-[#5BF731] font-medium">Analyzing</span>
             </div>
           )}
         </div>
         <div className="p-5 max-h-[500px] overflow-y-auto">
           {error ? (
-            <div className="flex items-start gap-3 text-red-400">
+            <div className="flex items-start gap-3 text-[#F7314C] bg-[rgba(247,49,76,0.08)] p-3 rounded-xl border border-[rgba(247,49,76,0.2)]">
               <svg
                 className="w-5 h-5 mt-0.5 shrink-0"
                 fill="none"
@@ -308,11 +312,12 @@ export const MemoizedVerdictPanel = React.memo(
           ) : content ? (
             <MemoizedMarkdown content={content} />
           ) : isLoading ? (
-            <div className="text-purple-300 text-sm italic">
+            <div className="text-[rgba(255,255,255,0.5)] text-sm italic flex items-center gap-2">
+              <div className="w-4 h-4 border-2 border-[#5BF731] border-t-transparent rounded-full animate-spin" />
               Analyzing all responses to find consensus and differences...
             </div>
           ) : (
-            <div className="text-gray-500 text-sm italic">
+            <div className="text-[rgba(255,255,255,0.4)] text-sm italic">
               Verdict will appear here after all models respond...
             </div>
           )}
@@ -373,18 +378,24 @@ export const MemoizedConversationTurn = React.memo(
     }, []);
 
     return (
-      <div className="mb-8 pb-6 border-b border-gray-800">
-        <div className="mb-4 px-4 py-2 bg-gray-800/50 rounded-lg inline-block">
-          <span className="text-xs text-gray-400">
-            Turn {turn.turnNumber || index + 1}:
-          </span>
-          <span className="ml-2 text-gray-300">{turn.question}</span>
+      <div className="mb-8 pb-8 border-b border-[rgba(255,255,255,0.06)]">
+        {/* Turn Header */}
+        <div className="mb-5 flex items-center gap-3">
+          <div className="flex items-center gap-2 px-4 py-2.5 bg-[rgba(91,247,49,0.08)] border border-[rgba(91,247,49,0.2)] rounded-xl">
+            <div className="w-6 h-6 rounded-lg bg-[rgba(91,247,49,0.2)] flex items-center justify-center">
+              <span className="text-xs font-bold text-[#5BF731]">{turn.turnNumber || index + 1}</span>
+            </div>
+            <span className="text-sm text-[rgba(255,255,255,0.6)]">Turn</span>
+          </div>
+          <span className="text-[rgba(255,255,255,0.8)] font-medium">{turn.question}</span>
         </div>
-        <div className={`grid ${historyGridCols} gap-4 mb-4`}>
+
+        {/* Model Responses Grid */}
+        <div className={`grid ${historyGridCols} gap-4 mb-5`}>
           {respondedModels.map((modelId) => {
             const response = turn.responses[modelId];
             return (
-              <div key={modelId} className="min-h-[200px] max-h-[300px]">
+              <div key={modelId} className="min-h-[200px] max-h-[400px]">
                 <MemoizedResponsePanel
                   modelId={modelId}
                   modelName={getModelName(modelId)}
@@ -396,6 +407,8 @@ export const MemoizedConversationTurn = React.memo(
             );
           })}
         </div>
+
+        {/* Verdict */}
         {turn.verdict && (
           <MemoizedVerdictPanel
             content={turn.verdict.content}
@@ -494,22 +507,22 @@ export function VirtualizedConversation({
       return (
         <div
           key={index}
-          className="mb-2 px-4 py-3 bg-gray-800/30 rounded-lg cursor-pointer hover:bg-gray-800/50 transition-colors border border-gray-700/50"
+          className="mb-3 px-4 py-3.5 bg-[rgba(255,255,255,0.02)] rounded-xl cursor-pointer hover:bg-[rgba(255,255,255,0.04)] transition-colors border border-[rgba(255,255,255,0.06)] hover:border-[rgba(91,247,49,0.2)]"
           onClick={() => toggleExpandTurn(index)}
         >
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 min-w-0 flex-1">
-              <span className="text-xs text-gray-500">
-                Turn {turn.turnNumber || index + 1}
-              </span>
-              <span className="text-gray-400 truncate">{turn.question}</span>
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              <div className="w-7 h-7 rounded-lg bg-[rgba(91,247,49,0.1)] flex items-center justify-center shrink-0">
+                <span className="text-xs font-bold text-[#5BF731]">{turn.turnNumber || index + 1}</span>
+              </div>
+              <span className="text-[rgba(255,255,255,0.7)] truncate text-sm">{turn.question}</span>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-xs text-gray-500">
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="text-xs text-[rgba(255,255,255,0.4)] bg-[rgba(255,255,255,0.05)] px-2 py-1 rounded-lg">
                 {modelCount} responses
               </span>
               <svg
-                className="w-4 h-4 text-gray-500"
+                className="w-4 h-4 text-[rgba(255,255,255,0.4)]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -537,8 +550,11 @@ export function VirtualizedConversation({
           <div key={index} className="relative">
             <button
               onClick={() => toggleExpandTurn(index)}
-              className="absolute top-2 right-2 z-10 px-2 py-1 bg-gray-800 hover:bg-gray-700 rounded text-xs text-gray-400 transition-colors"
+              className="absolute top-3 right-3 z-10 px-3 py-1.5 bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] rounded-lg text-xs text-[rgba(255,255,255,0.5)] hover:text-white transition-colors flex items-center gap-1.5"
             >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
               Collapse
             </button>
             <MemoizedConversationTurn
@@ -569,10 +585,13 @@ export function VirtualizedConversation({
     <div ref={containerRef}>
       {/* Collapsed older turns */}
       {visibleRange.start > 0 && (
-        <div className="mb-4">
-          <div className="text-xs text-gray-500 mb-2 px-2">
+        <div className="mb-6">
+          <div className="text-xs text-[rgba(255,255,255,0.4)] mb-3 px-2 flex items-center gap-2">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             {visibleRange.start} older turn{visibleRange.start > 1 ? "s" : ""}{" "}
-            (click to expand)
+            <span className="text-[rgba(255,255,255,0.3)]">• click to expand</span>
           </div>
           {conversationHistory
             .slice(0, visibleRange.start)

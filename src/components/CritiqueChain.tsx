@@ -137,31 +137,31 @@ const ResponseCard = memo(
     title: string;
     subtitle: string;
     response: StepResponse | undefined;
-    colorClass: "blue" | "amber" | "purple";
+    colorClass: "green" | "gold" | "red";
     stepNumber?: number;
     compact?: boolean;
   }) {
     const colors = {
-      blue: {
-        bg: "from-blue-900/30 to-blue-800/20",
-        border: "border-blue-500/30",
-        header: "bg-blue-900/20",
-        accent: "text-blue-400",
-        step: "bg-blue-600",
+      green: {
+        bg: "from-[rgba(91,247,49,0.08)] to-[rgba(91,247,49,0.02)]",
+        border: "border-[rgba(91,247,49,0.2)]",
+        header: "bg-[rgba(91,247,49,0.05)]",
+        accent: "text-[#5BF731]",
+        step: "bg-[#5BF731] text-[#050505]",
       },
-      amber: {
-        bg: "from-amber-900/30 to-amber-800/20",
-        border: "border-amber-500/30",
-        header: "bg-amber-900/20",
-        accent: "text-amber-400",
-        step: "bg-amber-600",
+      gold: {
+        bg: "from-[rgba(247,198,49,0.08)] to-[rgba(247,198,49,0.02)]",
+        border: "border-[rgba(247,198,49,0.2)]",
+        header: "bg-[rgba(247,198,49,0.05)]",
+        accent: "text-[#F7C631]",
+        step: "bg-[#F7C631] text-[#050505]",
       },
-      purple: {
-        bg: "from-purple-900/30 to-purple-800/20",
-        border: "border-purple-500/30",
-        header: "bg-purple-900/20",
-        accent: "text-purple-400",
-        step: "bg-purple-600",
+      red: {
+        bg: "from-[rgba(247,49,76,0.08)] to-[rgba(247,49,76,0.02)]",
+        border: "border-[rgba(247,49,76,0.2)]",
+        header: "bg-[rgba(247,49,76,0.05)]",
+        accent: "text-[#F7314C]",
+        step: "bg-[#F7314C] text-white",
       },
     };
     const c = colors[colorClass];
@@ -279,7 +279,7 @@ const MemoizedHistoryTurn = memo(
           title="Primary Response"
           subtitle={getModelDisplayName(primaryModel)}
           response={turn.primaryResponse}
-          colorClass="blue"
+          colorClass="green"
           stepNumber={1}
           compact
         />
@@ -291,7 +291,7 @@ const MemoizedHistoryTurn = memo(
                 title={getModelDisplayName(modelId)}
                 subtitle={modelId.split("/")[0]}
                 response={turn.critiqueResponses[modelId]}
-                colorClass="amber"
+                colorClass="gold"
                 compact
               />
             ))}
@@ -303,7 +303,7 @@ const MemoizedHistoryTurn = memo(
               title="Final Review"
               subtitle={getModelDisplayName(reviewerModel)}
               response={turn.reviewResponse}
-              colorClass="purple"
+              colorClass="red"
               stepNumber={3}
               compact
             />
@@ -1249,7 +1249,7 @@ Please provide:
               title="Primary Response"
               subtitle={getModelDisplayName(primaryModel)}
               response={displayPrimaryResponse}
-              colorClass="blue"
+              colorClass="green"
               stepNumber={1}
             />
           )}
@@ -1269,7 +1269,7 @@ Please provide:
                     title={model.name}
                     subtitle={model.id.split("/")[0]}
                     response={displayCritiqueResponses[model.id]}
-                    colorClass="amber"
+                    colorClass="gold"
                     compact
                   />
                 ))}
@@ -1283,7 +1283,7 @@ Please provide:
                 title="Final Review"
                 subtitle={getModelDisplayName(reviewerModel)}
                 response={displayReviewResponse}
-                colorClass="purple"
+                colorClass="red"
                 stepNumber={3}
               />
             </div>
@@ -1294,7 +1294,7 @@ Please provide:
               onSubmit={handleFollowUp}
               disabled={currentStep !== "complete"}
               placeholder="Ask a follow-up question..."
-              colorClass="purple"
+              colorClass="red"
             />
           )}
         </>

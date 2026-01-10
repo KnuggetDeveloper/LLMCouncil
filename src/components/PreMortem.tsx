@@ -131,30 +131,30 @@ const ResponseCard = memo(
     title: string;
     subtitle: string;
     response: StepResponse | undefined;
-    colorClass: "red" | "blue" | "cyan";
+    colorClass: "red" | "cyan" | "green";
     compact?: boolean;
   }) {
     const colors = {
       red: {
-        bg: "from-red-900/30 to-rose-800/20",
-        border: "border-red-500/30",
-        header: "bg-red-900/20",
-        accent: "text-red-400",
-        step: "bg-red-600",
-      },
-      blue: {
-        bg: "from-blue-900/30 to-blue-800/20",
-        border: "border-blue-500/30",
-        header: "bg-blue-900/20",
-        accent: "text-blue-400",
-        step: "bg-blue-600",
+        bg: "from-[rgba(247,49,76,0.08)] to-[rgba(247,49,76,0.02)]",
+        border: "border-[rgba(247,49,76,0.2)]",
+        header: "bg-[rgba(247,49,76,0.05)]",
+        accent: "text-[#F7314C]",
+        step: "bg-[#F7314C] text-white",
       },
       cyan: {
-        bg: "from-cyan-900/30 to-cyan-800/20",
-        border: "border-cyan-500/30",
-        header: "bg-cyan-900/20",
-        accent: "text-cyan-400",
-        step: "bg-cyan-600",
+        bg: "from-[rgba(49,168,247,0.08)] to-[rgba(49,168,247,0.02)]",
+        border: "border-[rgba(49,168,247,0.2)]",
+        header: "bg-[rgba(49,168,247,0.05)]",
+        accent: "text-[#31A8F7]",
+        step: "bg-[#31A8F7] text-white",
+      },
+      green: {
+        bg: "from-[rgba(91,247,49,0.08)] to-[rgba(91,247,49,0.02)]",
+        border: "border-[rgba(91,247,49,0.2)]",
+        header: "bg-[rgba(91,247,49,0.05)]",
+        accent: "text-[#5BF731]",
+        step: "bg-[#5BF731] text-[#050505]",
       },
     };
     const c = colors[colorClass];
@@ -1091,7 +1091,7 @@ Please provide your pre-mortem failure analysis.`;
               onSubmit={handleFollowUp}
               disabled={currentStep !== "complete"}
               placeholder="Ask a follow-up question..."
-              colorClass="purple"
+              colorClass="green"
             />
           )}
         </>

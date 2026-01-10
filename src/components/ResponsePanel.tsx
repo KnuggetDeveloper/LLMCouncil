@@ -21,25 +21,23 @@ function ResponsePanelInner({ model, response }: ResponsePanelProps) {
   );
 
   return (
-    <div className="flex flex-col h-full bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
+    <div className="flex flex-col h-full bg-[#0a0a0a] rounded-2xl border border-[rgba(255,255,255,0.08)] overflow-hidden hover:border-[rgba(91,247,49,0.2)] transition-colors group">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 py-3 bg-gray-800/50 border-b border-gray-700">
-        <div className="flex items-center gap-2 min-w-0 flex-1">
-          <div className="w-2 h-2 rounded-full bg-green-500 shrink-0" />
-          <span className="font-semibold text-white truncate">
+      <div className="flex items-center gap-3 px-4 py-3 bg-[rgba(255,255,255,0.02)] border-b border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#5BF731] shrink-0 shadow-[0_0_8px_rgba(91,247,49,0.5)]" />
+          <span className="font-semibold text-white truncate text-sm">
             {model.name}
           </span>
         </div>
-        <span className="text-xs text-gray-500 px-2 py-0.5 bg-gray-700 rounded-full shrink-0">
+        <span className="text-[0.65rem] text-[rgba(255,255,255,0.4)] px-2 py-1 bg-[rgba(255,255,255,0.05)] rounded-lg shrink-0 font-medium">
           {provider}
         </span>
         {isLoading && (
-          <div className="shrink-0">
-            <div className="flex gap-1">
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
-            </div>
+          <div className="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-[rgba(91,247,49,0.1)] rounded-lg">
+            <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce [animation-delay:-0.3s]" />
+            <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce [animation-delay:-0.15s]" />
+            <div className="w-1.5 h-1.5 bg-[#5BF731] rounded-full animate-bounce" />
           </div>
         )}
       </div>
@@ -47,7 +45,7 @@ function ResponsePanelInner({ model, response }: ResponsePanelProps) {
       {/* Content */}
       <div className="flex-1 p-4 overflow-y-auto">
         {error ? (
-          <div className="flex items-start gap-3 text-red-400">
+          <div className="flex items-start gap-3 text-[#F7314C] bg-[rgba(247,49,76,0.08)] p-3 rounded-xl border border-[rgba(247,49,76,0.2)]">
             <svg
               className="w-5 h-5 mt-0.5 shrink-0"
               fill="none"
@@ -66,9 +64,12 @@ function ResponsePanelInner({ model, response }: ResponsePanelProps) {
         ) : content ? (
           <MemoizedMarkdown content={content} />
         ) : isLoading ? (
-          <div className="text-gray-500 text-sm italic">Thinking...</div>
+          <div className="text-[rgba(255,255,255,0.4)] text-sm italic flex items-center gap-2">
+            <div className="w-4 h-4 border-2 border-[#5BF731] border-t-transparent rounded-full animate-spin" />
+            Thinking...
+          </div>
         ) : (
-          <div className="text-gray-600 text-sm italic">
+          <div className="text-[rgba(255,255,255,0.3)] text-sm italic">
             Response will appear here...
           </div>
         )}

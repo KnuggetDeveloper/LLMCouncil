@@ -56,6 +56,10 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
   const [projectMemory, setProjectMemory] = useState<ProjectMemory | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Cache for threads by projectId - makes switching between projects instant!
+  const threadsCache = React.useRef<Map<string, { threads: Thread[]; timestamp: number }>>(new Map());
+  const CACHE_TTL = 5 * 60 * 1000; // 5 minutes cache lifetime
+
   // Helper to get auth headers
   const getAuthHeaders = useCallback(async (): Promise<Record<string, string>> => {
     const token = await getIdToken();
@@ -102,16 +106,34 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
   }, [fetchProjects, getAuthHeaders]);
 
   const selectProject = useCallback((project: Project | null) => {
+    // Only clear threads if selecting a different project
+    if (project?.id !== currentProject?.id) {
+      setCurrentThread(null);
+      setProjectMemory(null);
+      
+      // INSTANT: Load from cache immediately if available
+      if (project?.id) {
+        const cached = threadsCache.current.get(project.id);
+        if (cached) {
+          setThreads(cached.threads);
+        } else {
+          setThreads([]);
+        }
+      } else {
+        setThreads([]);
+      }
+    }
     setCurrentProject(project);
-    setCurrentThread(null);
-    setThreads([]);
-    setProjectMemory(null);
-  }, []);
+  }, [currentProject?.id]);
 
   const deleteProject = useCallback(async (projectId: string) => {
     try {
       const headers = await getAuthHeaders();
       await fetch(`/api/projects/${projectId}`, { method: "DELETE", headers });
+      
+      // Clear cache for deleted project
+      threadsCache.current.delete(projectId);
+      
       if (currentProject?.id === projectId) {
         setCurrentProject(null);
         setCurrentThread(null);
@@ -124,18 +146,51 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     }
   }, [currentProject, fetchProjects, getAuthHeaders]);
 
-  const fetchThreads = useCallback(async (projectId: string) => {
+  const fetchThreads = useCallback(async (projectId: string, forceRefresh = false) => {
     try {
+      // Check cache first (unless force refresh)
+      if (!forceRefresh) {
+        const cached = threadsCache.current.get(projectId);
+        const now = Date.now();
+        
+        // If cache is fresh (less than 5 min old), use it and fetch in background
+        if (cached && (now - cached.timestamp) < CACHE_TTL) {
+          setThreads(cached.threads);
+          // Still fetch in background to keep cache fresh
+          const headers = await getAuthHeaders();
+          fetch(`/api/projects/${projectId}/threads`, { headers })
+            .then(response => response.ok ? response.json() : null)
+            .then(data => {
+              if (data) {
+                const freshThreads = data.threads || [];
+                threadsCache.current.set(projectId, { threads: freshThreads, timestamp: Date.now() });
+                setThreads(freshThreads);
+              }
+            })
+            .catch(() => {}); // Silently fail background refresh
+          return;
+        }
+      }
+
+      // Cache miss or expired - fetch normally
       const headers = await getAuthHeaders();
       const response = await fetch(`/api/projects/${projectId}/threads`, { headers });
       if (response.ok) {
         const data = await response.json();
-        setThreads(data.threads || []);
+        const fetchedThreads = data.threads || [];
+        
+        // Update cache
+        threadsCache.current.set(projectId, { 
+          threads: fetchedThreads, 
+          timestamp: Date.now() 
+        });
+        
+        setThreads(fetchedThreads);
       }
     } catch (error) {
       console.error("Failed to fetch threads:", error);
     }
-  }, [getAuthHeaders]);
+  }, [getAuthHeaders, CACHE_TTL]);
 
   const createThread = useCallback(async (
     projectId: string,
@@ -143,19 +198,38 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     mode: string
   ): Promise<Thread | null> => {
     try {
+      // Optimistic update - add temporary thread immediately for instant UI
+      const tempThread: Thread = {
+        id: `temp-${Date.now()}`,
+        projectId,
+        title,
+        mode,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      setThreads(prev => [tempThread, ...prev]);
+
       const headers = await getAuthHeaders();
       const response = await fetch(`/api/projects/${projectId}/threads`, {
         method: "POST",
         headers: { "Content-Type": "application/json", ...headers },
         body: JSON.stringify({ title, mode }),
       });
+      
       if (response.ok) {
         const data = await response.json();
-        await fetchThreads(projectId);
+        // Invalidate cache and refresh to get real data
+        threadsCache.current.delete(projectId);
+        await fetchThreads(projectId, true);
         return data.thread;
+      } else {
+        // Rollback optimistic update on error
+        setThreads(prev => prev.filter(t => t.id !== tempThread.id));
       }
     } catch (error) {
       console.error("Failed to create thread:", error);
+      // Rollback on error
+      setThreads(prev => prev.filter(t => !t.id.startsWith('temp-')));
     }
     return null;
   }, [fetchThreads, getAuthHeaders]);
@@ -165,19 +239,39 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const deleteThread = useCallback(async (threadId: string) => {
+    // Store for rollback
+    const threadToDelete = threads.find(t => t.id === threadId);
+    
     try {
-      const headers = await getAuthHeaders();
-      await fetch(`/api/threads/${threadId}`, { method: "DELETE", headers });
+      // Optimistic update - remove immediately for instant UI
+      setThreads(prev => prev.filter(t => t.id !== threadId));
+      
       if (currentThread?.id === threadId) {
         setCurrentThread(null);
       }
-      if (currentProject) {
-        await fetchThreads(currentProject.id);
+
+      const headers = await getAuthHeaders();
+      const response = await fetch(`/api/threads/${threadId}`, { method: "DELETE", headers });
+      
+      if (response.ok) {
+        // Success - invalidate cache
+        if (currentProject) {
+          threadsCache.current.delete(currentProject.id);
+        }
+      } else {
+        // Rollback on error
+        if (threadToDelete && currentProject) {
+          setThreads(prev => [...prev, threadToDelete]);
+        }
       }
     } catch (error) {
       console.error("Failed to delete thread:", error);
+      // Rollback on error
+      if (threadToDelete) {
+        setThreads(prev => [...prev, threadToDelete]);
+      }
     }
-  }, [currentThread, currentProject, fetchThreads, getAuthHeaders]);
+  }, [currentThread, currentProject, threads, getAuthHeaders]);
 
   const fetchProjectMemory = useCallback(async (projectId: string) => {
     try {

@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     // Get return URL from request or use default
     const { returnUrl } = await request.json().catch(() => ({}));
-    const finalReturnUrl = returnUrl || `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/subscription/success`;
+    const finalReturnUrl = returnUrl || `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/dashboard`;
 
     // Create checkout session
     const checkoutSession = await client.checkoutSessions.create({
