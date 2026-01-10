@@ -5,6 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import NetworkCanvas from "@/components/NetworkCanvas";
+import Link from "next/link";
 
 export default function AuthPage() {
   const [error, setError] = useState("");
@@ -49,16 +50,18 @@ export default function AuthPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo/Header */}
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Image
-              src="/logo.png"
-              alt="Rigorus Logo"
-              width={60}
-              height={60}
-              className="object-contain"
-            />
-            <h1 className="text-3xl font-bold text-white">rigorus</h1>
-          </div>
+          <Link href="/">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Image
+                src="/logo.png"
+                alt="Rigorus Logo"
+                width={60}
+                height={60}
+                className="object-contain"
+              />
+              <h1 className="text-3xl font-bold text-white">rigorus</h1>
+            </div>
+          </Link>
           <p className="text-[rgba(255,255,255,0.7)] text-lg">
             Stop thinking alone
           </p>
@@ -146,8 +149,7 @@ export default function AuthPage() {
         {/* Additional Info */}
         <div className="mt-8 text-center">
           <p className="text-[rgba(255,255,255,0.5)] text-sm mb-4">
-            Pressure-test your startup's decisions with an AI board of
-            directors
+            Pressure-test your startup&apos;s decisions with an AI board of directors
           </p>
           <div className="flex items-center justify-center gap-6 text-xs text-[rgba(255,255,255,0.4)]">
             <span className="flex items-center gap-2">
@@ -204,4 +206,3 @@ export default function AuthPage() {
     </div>
   );
 }
-
