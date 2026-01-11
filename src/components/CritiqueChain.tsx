@@ -10,6 +10,7 @@ import React, {
   memo,
 } from "react";
 import { useModels } from "@/context/ModelsContext";
+import { useAuth } from "@/context/AuthContext";
 import { FileAttachment } from "../../types";
 import FollowUpInput from "./FollowUpInput";
 import FileUpload from "./FileUpload";
@@ -434,6 +435,7 @@ export default function CritiqueChain({
   threadId,
 }: CritiqueChainProps) {
   const { primaryModel, critiqueModels, reviewerModel } = useModels();
+  const { getIdToken } = useAuth();
   const [question, setQuestion] = useState("");
   const [attachments, setAttachments] = useState<FileAttachment[]>([]);
   const [currentStep, setCurrentStep] = useState<WorkflowStep>("idle");
@@ -615,9 +617,18 @@ export default function CritiqueChain({
             ? convertAttachmentsForAPI(queryAttachments)
             : undefined;
 
+        const token = await getIdToken();
+        if (!token) {
+          onError("Authentication required");
+          return;
+        }
+
         const response = await fetch("/api/chat", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
           body: JSON.stringify({
             message: prompt,
             modelId,
@@ -667,7 +678,7 @@ export default function CritiqueChain({
         onError(error instanceof Error ? error.message : "Unknown error");
       }
     },
-    []
+    [getIdToken]
   );
 
   const runCritiques = useCallback(

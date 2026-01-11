@@ -10,6 +10,7 @@ import React, {
   memo,
 } from "react";
 import { useModels } from "@/context/ModelsContext";
+import { useAuth } from "@/context/AuthContext";
 import { FileAttachment } from "../../types";
 import FollowUpInput from "./FollowUpInput";
 import FileUpload from "./FileUpload";
@@ -427,12 +428,9 @@ export default function PreMortem({
   onSaveMessage,
   threadId,
 }: PreMortemProps) {
-  const {
-    redTeamModels,
-    blueTeamModels,
-    redTeamPrompt,
-    blueTeamPrompt,
-  } = useModels();
+  const { redTeamModels, blueTeamModels, redTeamPrompt, blueTeamPrompt } =
+    useModels();
+  const { getIdToken } = useAuth();
   const [question, setQuestion] = useState("");
   const [attachments, setAttachments] = useState<FileAttachment[]>([]);
   const [currentStep, setCurrentStep] = useState<WorkflowStep>("idle");
@@ -550,9 +548,18 @@ export default function PreMortem({
             ? convertAttachmentsForAPI(queryAttachments)
             : undefined;
 
+        const token = await getIdToken();
+        if (!token) {
+          onError("Authentication required");
+          return;
+        }
+
         const response = await fetch("/api/chat", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
           body: JSON.stringify({
             message: prompt,
             modelId,
@@ -602,7 +609,7 @@ export default function PreMortem({
         onError(error instanceof Error ? error.message : "Unknown error");
       }
     },
-    []
+    [getIdToken]
   );
 
   const runBlueTeam = useCallback(
@@ -730,8 +737,7 @@ Please analyze all the failure points identified above and provide comprehensive
       isFollowUp: boolean = false,
       queryAttachments: FileAttachment[] = []
     ) => {
-      if (!queryQuestion.trim() || redTeamModels.length === 0)
-        return;
+      if (!queryQuestion.trim() || redTeamModels.length === 0) return;
 
       const newTurnNumber = currentTurnNumber + 1;
 
@@ -1097,7 +1103,7 @@ Please provide your pre-mortem failure analysis.`;
       {/* Empty state */}
       {currentStep === "idle" && conversationHistory.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-rose-900/50 to-red-900/50 flex items-center justify-center mb-6 border border-rose-500/30">
+          <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-rose-900/50 to-red-900/50 flex items-center justify-center mb-6 border border-rose-500/30">
             <svg
               className="w-10 h-10 text-rose-400"
               fill="none"
