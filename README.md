@@ -10,6 +10,7 @@ A powerful web application to compare responses from multiple AI models side-by-
 ## ✨ Features
 
 ### 📁 Project-Based Workflow
+
 - **Create Projects**: Organize your AI comparisons into separate projects
 - **Conversation Threads**: Multiple conversations within each project
 - **Full History Persistence**: Every question, every model response, and every verdict is saved
@@ -17,6 +18,7 @@ A powerful web application to compare responses from multiple AI models side-by-
 - **Context Preservation**: All models receive project context for more relevant responses
 
 ### 🔄 MultiAsk Mode
+
 - **Parallel Querying**: Send your question to multiple LLM models simultaneously
 - **Streaming Responses**: Watch responses appear in real-time as models generate them
 - **Side-by-Side Comparison**: View all model responses in a responsive grid layout
@@ -25,19 +27,21 @@ A powerful web application to compare responses from multiple AI models side-by-
 - **Complete History**: See all past turns with questions, responses from every model, and verdicts
 
 ### 🔍 Critique Chain Mode
+
 A structured workflow for thoroughly vetted answers:
 
-| Step | Description |
-|------|-------------|
-| 1. **Primary Model** | Answers your question first |
+| Step                   | Description                                                                                        |
+| ---------------------- | -------------------------------------------------------------------------------------------------- |
+| 1. **Primary Model**   | Answers your question first                                                                        |
 | 2. **Critique Models** | Multiple models critically evaluate the primary response for accuracy, completeness, and reasoning |
-| 3. **Reviewer Model** | Synthesizes all critiques, identifies consensus/disagreements, and provides a final verdict |
+| 3. **Reviewer Model**  | Synthesizes all critiques, identifies consensus/disagreements, and provides a final verdict        |
 
 - **Visual Progress**: See which step is currently active
 - **Follow-up Support**: Continue with follow-up questions that include full context
 - **History Persistence**: All steps are saved and visible when you return to the thread
 
 ### 🧠 Smart Memory System
+
 - **Automatic Summarization**: Every 10 messages, an AI analyzes conversations and extracts:
   - **Summary**: Overview of project status and goals
   - **Key Facts**: Important information established in conversations
@@ -47,6 +51,7 @@ A structured workflow for thoroughly vetted answers:
 - **Manual Refresh**: Trigger memory updates on demand
 
 ### 🎨 Modern UI/UX
+
 - Beautiful dark theme with gradient accents
 - Responsive sidebar with project and thread navigation
 - Markdown rendering with syntax highlighting
@@ -60,35 +65,84 @@ A structured workflow for thoroughly vetted answers:
 
 - **Node.js 18+** - [Download here](https://nodejs.org/)
 - **OpenRouter API Key** - [Get one here](https://openrouter.ai/keys)
+- **PostgreSQL Database** - For production deployment
+- **Firebase Project** - For authentication ([Setup guide](https://firebase.google.com/))
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/dsk003/multimodelGPT.git
    cd multimodelGPT
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
-3. **Start the development server**
+3. **Set up environment variables**
+
+   Create a `.env.local` file in the project root:
+
+   ```env
+   # Database
+   DATABASE_URL="postgresql://user:password@localhost:5432/llmcouncil"
+
+   # Firebase Admin (Server-side)
+   FIREBASE_PROJECT_ID=your-project-id
+   FIREBASE_CLIENT_EMAIL=your-client-email@project.iam.gserviceaccount.com
+   FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour key\n-----END PRIVATE KEY-----\n"
+
+   # Firebase Client (Client-side)
+   NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789
+   NEXT_PUBLIC_FIREBASE_APP_ID=1:123456789:web:abcdef
+
+   # OpenRouter API
+   OPENROUTER_KEY=sk-or-v1-your-key-here
+
+   # Cron Security (optional but recommended for production)
+   CRON_SECRET=your-random-secret-here
+
+   # Application URLs
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
+   ```
+
+4. **Run database migrations**
+
+   ```bash
+   npx prisma migrate deploy
+   ```
+
+5. **Sync models from OpenRouter**
+
+   ```bash
+   npx tsx scripts/seed-models.ts
+   ```
+
+6. **Start the development server**
+
    ```bash
    npm run dev
    ```
 
-4. **Open the app**
-   
+7. **Open the app**
+
    Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
-5. **Configure your API key**
-   - Click the **Settings** button (top right)
-   - Paste your OpenRouter API key
-   - Add model IDs for the modes you want to use
+8. **Configure your models**
 
-6. **Create a Project & Start Comparing**
+   - Click the **Settings** button (top right)
+   - Add model IDs for the modes you want to use (models are synced automatically from OpenRouter)
+
+9. **Create a Project & Start Comparing**
    - Click the **+** button in the sidebar to create a project
    - Click **MultiAsk** or **Critique Chain** to start a conversation
    - Ask your question and watch the magic happen!
@@ -100,22 +154,42 @@ A structured workflow for thoroughly vetted answers:
 Click **Settings** in the top right corner to configure:
 
 #### API Key
-| Setting | Description |
-|---------|-------------|
+
+| Setting                | Description                                                        |
+| ---------------------- | ------------------------------------------------------------------ |
 | **OpenRouter API Key** | Your API key from [openrouter.ai/keys](https://openrouter.ai/keys) |
 
 #### MultiAsk Tab
-| Setting | Description |
-|---------|-------------|
+
+| Setting             | Description                                                                                          |
+| ------------------- | ---------------------------------------------------------------------------------------------------- |
 | **Models to Query** | Add model IDs to compare (e.g., `openai/gpt-4o`). Add multiple models to see responses side-by-side. |
-| **Verdict Model** | (Optional) A model that synthesizes all responses and identifies consensus/differences |
+| **Verdict Model**   | (Optional) A model that synthesizes all responses and identifies consensus/differences               |
 
 #### Critique Chain Tab
-| Setting | Description |
-|---------|-------------|
-| **Primary Model** | The model that answers your question first |
+
+| Setting             | Description                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| **Primary Model**   | The model that answers your question first                                              |
 | **Critique Models** | Models that critically evaluate the primary response (add 2-3 for diverse perspectives) |
-| **Reviewer Model** | Model that synthesizes all critiques into a final assessment |
+| **Reviewer Model**  | Model that synthesizes all critiques into a final assessment                            |
+
+### Model Synchronization
+
+**Automatic Updates:** The application automatically syncs available models from OpenRouter daily at 2:00 AM UTC. This ensures:
+
+- ✅ You always see currently available models
+- ✅ Deprecated models are automatically removed
+- ✅ New models appear automatically
+- ✅ Pricing information stays up-to-date
+
+**Manual Sync:** To immediately sync models, run:
+
+```bash
+npx tsx scripts/seed-models.ts
+```
+
+See [MODELS_SYNC.md](MODELS_SYNC.md) for detailed documentation on the model synchronization system.
 
 ### Finding Model IDs
 
@@ -123,17 +197,17 @@ Browse available models at [openrouter.ai/models](https://openrouter.ai/models).
 
 #### Popular Model IDs
 
-| Model | ID | Best For |
-|-------|-----|----------|
-| GPT-4o | `openai/gpt-4o` | Complex reasoning, analysis |
-| GPT-4o Mini | `openai/gpt-4o-mini` | Fast, cost-effective responses |
-| Claude 3.5 Sonnet | `anthropic/claude-3.5-sonnet` | Writing, coding, analysis |
-| Claude 3.5 Haiku | `anthropic/claude-3.5-haiku` | Fast, concise responses |
-| Gemini 2.0 Flash | `google/gemini-2.0-flash-exp:free` | Free tier, general use |
-| Gemini 1.5 Pro | `google/gemini-pro-1.5` | Long context, detailed responses |
-| Llama 3.3 70B | `meta-llama/llama-3.3-70b-instruct` | Open source, capable |
-| DeepSeek V3 | `deepseek/deepseek-chat` | Coding, reasoning |
-| Qwen 2.5 72B | `qwen/qwen-2.5-72b-instruct` | Multilingual, reasoning |
+| Model             | ID                                  | Best For                         |
+| ----------------- | ----------------------------------- | -------------------------------- |
+| GPT-4o            | `openai/gpt-4o`                     | Complex reasoning, analysis      |
+| GPT-4o Mini       | `openai/gpt-4o-mini`                | Fast, cost-effective responses   |
+| Claude 3.5 Sonnet | `anthropic/claude-3.5-sonnet`       | Writing, coding, analysis        |
+| Claude 3.5 Haiku  | `anthropic/claude-3.5-haiku`        | Fast, concise responses          |
+| Gemini 2.0 Flash  | `google/gemini-2.0-flash-exp:free`  | Free tier, general use           |
+| Gemini 1.5 Pro    | `google/gemini-pro-1.5`             | Long context, detailed responses |
+| Llama 3.3 70B     | `meta-llama/llama-3.3-70b-instruct` | Open source, capable             |
+| DeepSeek V3       | `deepseek/deepseek-chat`            | Coding, reasoning                |
+| Qwen 2.5 72B      | `qwen/qwen-2.5-72b-instruct`        | Multilingual, reasoning          |
 
 ## 📖 How to Use
 
@@ -286,37 +360,39 @@ messages (id, thread_id, project_id, role, content, model_used, turn_number, met
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| [Next.js 16](https://nextjs.org/) | React framework with App Router |
-| [TypeScript](https://www.typescriptlang.org/) | Type-safe JavaScript |
-| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling |
-| [SQLite](https://www.sqlite.org/) | Local database storage |
-| [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) | SQLite driver |
-| [Drizzle ORM](https://orm.drizzle.team/) | Type-safe database queries |
-| [OpenRouter](https://openrouter.ai/) | Unified LLM API access |
-| [React Markdown](https://github.com/remarkjs/react-markdown) | Markdown rendering |
-| [remark-gfm](https://github.com/remarkjs/remark-gfm) | GitHub Flavored Markdown |
+| Technology                                                   | Purpose                         |
+| ------------------------------------------------------------ | ------------------------------- |
+| [Next.js 16](https://nextjs.org/)                            | React framework with App Router |
+| [TypeScript](https://www.typescriptlang.org/)                | Type-safe JavaScript            |
+| [Tailwind CSS](https://tailwindcss.com/)                     | Utility-first styling           |
+| [SQLite](https://www.sqlite.org/)                            | Local database storage          |
+| [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) | SQLite driver                   |
+| [Drizzle ORM](https://orm.drizzle.team/)                     | Type-safe database queries      |
+| [OpenRouter](https://openrouter.ai/)                         | Unified LLM API access          |
+| [React Markdown](https://github.com/remarkjs/react-markdown) | Markdown rendering              |
+| [remark-gfm](https://github.com/remarkjs/remark-gfm)         | GitHub Flavored Markdown        |
 
 ## 📝 Usage Tips
 
 ### For Best Results
 
-| Tip | Description |
-|-----|-------------|
-| **Diverse Models** | Use models from different providers for varied perspectives |
-| **Capable Verdict** | Use a strong model (GPT-4o, Claude 3.5 Sonnet) as verdict/reviewer |
-| **Project Per Topic** | Create separate projects for different research topics |
-| **Clear Questions** | Be specific in your questions for better responses |
-| **Follow Up** | Use follow-up questions to drill deeper into topics |
+| Tip                   | Description                                                        |
+| --------------------- | ------------------------------------------------------------------ |
+| **Diverse Models**    | Use models from different providers for varied perspectives        |
+| **Capable Verdict**   | Use a strong model (GPT-4o, Claude 3.5 Sonnet) as verdict/reviewer |
+| **Project Per Topic** | Create separate projects for different research topics             |
+| **Clear Questions**   | Be specific in your questions for better responses                 |
+| **Follow Up**         | Use follow-up questions to drill deeper into topics                |
 
 ### Recommended Model Combinations
 
 **For MultiAsk Comparison:**
+
 - GPT-4o + Claude 3.5 Sonnet + Gemini 1.5 Pro
 - GPT-4o-mini + Claude 3.5 Haiku + Llama 3.3 70B (cost-effective)
 
 **For Critique Chain:**
+
 - Primary: GPT-4o or Claude 3.5 Sonnet
 - Critics: 2-3 models from different providers
 - Reviewer: GPT-4o or Claude 3.5 Sonnet
@@ -325,13 +401,13 @@ messages (id, thread_id, project_id, role, content, model_used, turn_number, met
 
 ### Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| **"API key invalid"** | Ensure key starts with `sk-or-` and has credits |
+| Issue                     | Solution                                          |
+| ------------------------- | ------------------------------------------------- |
+| **"API key invalid"**     | Ensure key starts with `sk-or-` and has credits   |
 | **Models not responding** | Check model ID is correct at openrouter.ai/models |
-| **Database errors** | Delete `data/multimodel.db` to reset |
-| **Slow responses** | Some models are slower; try faster variants |
-| **Memory not updating** | Click "Refresh Memory" in sidebar |
+| **Database errors**       | Delete `data/multimodel.db` to reset              |
+| **Slow responses**        | Some models are slower; try faster variants       |
+| **Memory not updating**   | Click "Refresh Memory" in sidebar                 |
 
 ### Reset Everything
 
